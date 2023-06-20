@@ -1,8 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "cnjKZ6i4469vo0IFavA+oBpqeof8x6zy6Ou28Yfoq3lu6F9oUL/4pQbAZt0YaCVJgkydWQH8PChGHK9d8nZusA==",
+  "dgSpecHash": "GNwkQmTkNJ9iSYsE4icx/ceMDijo1GxUmFXthkmhrsTGqm8GKOvu4umMEmcoifWkSNGRXvYsXQfXd+kpEwsD5w==",
   "success": true,
-  "projectFilePath": "/Users/blehjo/projects/nextjsarduinosolution/nextjsarduinoserver/nextjsarduinoserver.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "/Users/blehjo/projects/marauder/nextjsarduinoserver/nextjsarduinoserver.csproj",
+  "expectedPackageFiles": [
+    "/Users/blehjo/.nuget/packages/microsoft.netcore.platforms/1.1.0/microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "/Users/blehjo/.nuget/packages/microsoft.netcore.targets/1.1.0/microsoft.netcore.targets.1.1.0.nupkg.sha512",
+    "/Users/blehjo/.nuget/packages/socketioclient/3.0.8/socketioclient.3.0.8.nupkg.sha512",
+    "/Users/blehjo/.nuget/packages/system.collections/4.3.0/system.collections.4.3.0.nupkg.sha512",
+    "/Users/blehjo/.nuget/packages/system.runtime/4.3.0/system.runtime.4.3.0.nupkg.sha512",
+    "/Users/blehjo/.nuget/packages/system.text.encodings.web/7.0.0/system.text.encodings.web.7.0.0.nupkg.sha512",
+    "/Users/blehjo/.nuget/packages/system.text.json/7.0.2/system.text.json.7.0.2.nupkg.sha512"
+  ],
   "logs": []
 }

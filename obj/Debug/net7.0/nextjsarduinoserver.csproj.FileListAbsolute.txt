@@ -6,6 +6,7 @@
 /Users/blehjo/projects/nextjsarduinosolution/nextjsarduinoserver/bin/Debug/net7.0/nextjsarduinoserver.runtimeconfig.json
 /Users/blehjo/projects/nextjsarduinosolution/nextjsarduinoserver/bin/Debug/net7.0/nextjsarduinoserver.dll
 /Users/blehjo/projects/nextjsarduinosolution/nextjsarduinoserver/bin/Debug/net7.0/nextjsarduinoserver.pdb
+/Users/blehjo/projects/nextjsarduinosolution/nextjsarduinoserver/bin/Debug/net7.0/SocketIOClient.dll
 /Users/blehjo/projects/nextjsarduinosolution/nextjsarduinoserver/obj/Debug/net7.0/nextjsarduinoserver.csproj.AssemblyReference.cache
 /Users/blehjo/projects/nextjsarduinosolution/nextjsarduinoserver/obj/Debug/net7.0/nextjsarduinoserver.GeneratedMSBuildEditorConfig.editorconfig
 /Users/blehjo/projects/nextjsarduinosolution/nextjsarduinoserver/obj/Debug/net7.0/nextjsarduinoserver.AssemblyInfoInputs.cache
@@ -20,6 +21,7 @@
 /Users/blehjo/projects/nextjsarduinosolution/nextjsarduinoserver/obj/Debug/net7.0/staticwebassets.build.json
 /Users/blehjo/projects/nextjsarduinosolution/nextjsarduinoserver/obj/Debug/net7.0/staticwebassets.development.json
 /Users/blehjo/projects/nextjsarduinosolution/nextjsarduinoserver/obj/Debug/net7.0/scopedcss/bundle/nextjsarduinoserver.styles.css
+/Users/blehjo/projects/nextjsarduinosolution/nextjsarduinoserver/obj/Debug/net7.0/nextjsarduinoserver.csproj.CopyComplete
 /Users/blehjo/projects/nextjsarduinosolution/nextjsarduinoserver/obj/Debug/net7.0/nextjsarduinoserver.dll
 /Users/blehjo/projects/nextjsarduinosolution/nextjsarduinoserver/obj/Debug/net7.0/refint/nextjsarduinoserver.dll
 /Users/blehjo/projects/nextjsarduinosolution/nextjsarduinoserver/obj/Debug/net7.0/nextjsarduinoserver.pdb
