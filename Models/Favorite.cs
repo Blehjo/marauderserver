@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace nextjsarduinosolution.Models
+namespace marauderserver.Models
 {
     public class Favorite
     {

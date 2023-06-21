@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace nextjsarduinosolution.Models.Users
+namespace marauderserver.Models.Users
 {
 	public class AuthenticateRequest
 	{

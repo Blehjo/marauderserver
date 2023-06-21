@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace nextjsarduinosolution.Helpers
+namespace marauderserver.Helpers
 {
     public class AppException : Exception
     {

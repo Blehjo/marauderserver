@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using nextjsarduinosolution.Models;
+using marauderserver.Models;
 
-namespace nextjsarduinosolution.Models
+namespace marauderserver.Models
 {
 	public class Panel
 	{

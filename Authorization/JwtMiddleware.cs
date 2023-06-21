@@ -1,6 +1,6 @@
-﻿using nextjsarduinosolution.Services;
+﻿using marauderserver.Services;
 
-namespace nextjsarduinosolution.Authorization
+namespace marauderserver.Authorization
 {
     public class JwtMiddleware
     {

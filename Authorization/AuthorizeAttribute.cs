@@ -1,8 +1,8 @@
-﻿using nextjsarduinosolution.Models;
+﻿using marauderserver.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace nextjsarduinosolution.Authorization
+namespace marauderserver.Authorization
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public class AuthorizeAttribute : Attribute, IAuthorizationFilter

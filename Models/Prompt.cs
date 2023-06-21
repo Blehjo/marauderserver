@@ -1,4 +1,4 @@
-﻿namespace nextjsarduinosolution.Models
+﻿namespace marauderserver.Models
 {
     public class Prompt
     {

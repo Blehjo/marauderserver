@@ -1,4 +1,4 @@
-﻿namespace nextjsarduinosolution.Models.Users
+﻿namespace marauderserver.Models.Users
 {
 	public class AuthenticateResponse
 	{

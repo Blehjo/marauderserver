@@ -1,4 +1,4 @@
-﻿namespace nextjsarduinosolution.Helpers
+﻿namespace marauderserver.Helpers
 {
     public class AppSettings
     {

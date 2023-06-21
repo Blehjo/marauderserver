@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/blehjo/projects/marauder/nextjsarduinoserver/nextjsarduinoserver.csproj": {}
+    "/Users/blehjo/projects/marauder/marauderserver/nextjsarduinoserver.csproj": {}
   },
   "projects": {
-    "/Users/blehjo/projects/marauder/nextjsarduinoserver/nextjsarduinoserver.csproj": {
+    "/Users/blehjo/projects/marauder/marauderserver/nextjsarduinoserver.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/blehjo/projects/marauder/nextjsarduinoserver/nextjsarduinoserver.csproj",
+        "projectUniqueName": "/Users/blehjo/projects/marauder/marauderserver/nextjsarduinoserver.csproj",
         "projectName": "nextjsarduinoserver",
-        "projectPath": "/Users/blehjo/projects/marauder/nextjsarduinoserver/nextjsarduinoserver.csproj",
+        "projectPath": "/Users/blehjo/projects/marauder/marauderserver/nextjsarduinoserver.csproj",
         "packagesPath": "/Users/blehjo/.nuget/packages/",
-        "outputPath": "/Users/blehjo/projects/marauder/nextjsarduinoserver/obj/",
+        "outputPath": "/Users/blehjo/projects/marauder/marauderserver/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/blehjo/.nuget/NuGet/NuGet.Config"

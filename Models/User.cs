@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Numerics;
 using System.Text.Json.Serialization;
 
-namespace nextjsarduinosolution.Models;
+namespace marauderserver.Models;
 
 public class User
 {

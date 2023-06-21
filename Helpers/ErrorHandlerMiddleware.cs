@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using System.Text.Json;
 
-namespace nextjsarduinosolution.Helpers
+namespace marauderserver.Helpers
 {
     public class ErrorHandlerMiddleware
     {

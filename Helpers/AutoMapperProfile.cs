@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using nextjsarduinosolution.Models;
-using nextjsarduinosolution.Models.Users;
+using marauderserver.Models;
+using marauderserver.Models.Users;
 
-namespace nextjsarduinosolution.Helpers
+namespace marauderserver.Helpers
 {
     public class AutoMapperProfile : Profile
     {

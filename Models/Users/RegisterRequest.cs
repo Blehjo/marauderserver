@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace nextjsarduinosolution.Models.Users
+namespace marauderserver.Models.Users
 {
     public class RegisterRequest
     {

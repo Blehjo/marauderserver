@@ -1,12 +1,12 @@
-﻿using nextjsarduinosolution.Helpers;
-using nextjsarduinosolution.Models;
+﻿using marauderserver.Helpers;
+using marauderserver.Models;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace nextjsarduinosolution.Authorization
+namespace marauderserver.Authorization
 {
     public interface IJwtUtils
     {
