@@ -9,7 +9,7 @@ namespace marauderserver.Models
 	{
         public int ChannelId { get; set; }
 
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime DateCreated { get; set; } = DateTime.UtcNow;

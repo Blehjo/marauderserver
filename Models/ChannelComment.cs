@@ -9,9 +9,11 @@ namespace marauderserver.Models
 	{
         public int ChannelCommentId { get; set; }
 
-        public string ChannelCommentValue { get; set; }
+        public string CommentValue { get; set; }
 
         public string? MediaLink { get; set; }
+
+        public string Type { get; set; } = "channelcomment";
 
         [NotMapped]
         public IFormFile? ImageFile { get; set; }

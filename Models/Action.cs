@@ -4,7 +4,7 @@
 	{
 		public int ActionId { get; set; }
 
-		public string Event { get; set; } = "";
+		public string Event { get; set; } 
 
 		public string? Function { get; set; }
 
