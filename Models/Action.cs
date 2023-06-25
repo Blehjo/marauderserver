@@ -4,9 +4,9 @@
 	{
 		public int ActionId { get; set; }
 
-		public string Event { get; set; } 
+		public string EventType { get; set; } 
 
-		public string? Function { get; set; }
+		public string? Activity { get; set; }
 
         public int PinId { get; set; }
 

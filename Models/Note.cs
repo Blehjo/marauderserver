@@ -11,6 +11,14 @@ namespace marauderserver.Models
 
         public string NoteValue { get; set; }
 
+        public string? MediaLink { get; set; }
+
+        [NotMapped]
+        public IFormFile? ImageFile { get; set; }
+
+        [NotMapped]
+        public string? ImageSource { get; set; }
+
         [DataType(DataType.Date)]
         public DateTime DateCreated { get; set; } = DateTime.UtcNow;
 

@@ -1,8 +1,5 @@
-﻿using Microsoft.Extensions.Hosting;
-using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Numerics;
 using System.Text.Json.Serialization;
 
 namespace marauderserver.Models;
@@ -50,8 +47,6 @@ public class User
     public ICollection<Post>? Posts { get; set; }
 
     public ICollection<Comment>? Comments { get; set; }
-
-    public ICollection<Moon>? Moons { get; set; }
 
     public ICollection<Follower>? Followers { get; set; }
 
