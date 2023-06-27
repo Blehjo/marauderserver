@@ -4,7 +4,7 @@
 	{
 		public int PinId { get; set; }
 
-		public int PinLocation { get; set; }
+		public string PinLocation { get; set; }
 
         public bool IsAnalog { get; set; } = false;
 

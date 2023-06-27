@@ -9,9 +9,13 @@ namespace marauderserver.Models
 	{
         public int NoteId { get; set; }
 
-        public string NoteValue { get; set; }
+        public string? NoteValue { get; set; }
 
         public string? MediaLink { get; set; }
+
+        public int? XCoord { get; set; }
+
+        public int? YCoord { get; set; }
 
         [NotMapped]
         public IFormFile? ImageFile { get; set; }

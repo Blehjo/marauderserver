@@ -12,6 +12,10 @@ namespace marauderserver.Models
 
         public string? Title { get; set; }
 
+        public int? XCoord { get; set; }
+
+        public int? YCoord { get; set; }
+
         [DataType(DataType.Date)]
         public DateTime DateCreated { get; set; } = DateTime.UtcNow;
 
