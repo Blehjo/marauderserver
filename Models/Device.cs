@@ -1,0 +1,13 @@
+namespace marauderserver.Models;
+
+public class Device {
+
+    public string DeviceId { get; set; } = Guid.NewGuid().ToString();
+
+    public string DeviceName { get; set; }
+
+    public int DeviceType { get; set; }
+
+    public ICollection<Pin> Pins { get; set; }
+}
+
