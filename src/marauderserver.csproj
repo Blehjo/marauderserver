@@ -4,13 +4,15 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <DockerComposeProjectPath>../../docker-compose.dcproj</DockerComposeProjectPath>
+    <UserSecretsId>e65f4b69-acba-4f9f-bb02-a70d74ec3ed7</UserSecretsId>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(RunConfiguration)' == 'https' " />
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'http' " />
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'https' " />
   <ItemGroup>
     <None Remove="src\" />
     <None Remove="src\Authorization\" />
@@ -115,6 +117,8 @@
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.7" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.4" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.18.1" />
+    <PackageReference Include="Betalgo.OpenAI.GPT3" Version="6.8.4" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\Properties\launchSettings.json">

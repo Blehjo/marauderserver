@@ -8,6 +8,9 @@ public class Device {
 
     public int DeviceType { get; set; }
 
+    public int? UserId { get; set;}
+    public User User { get; set; }
+
     public ICollection<Pin> Pins { get; set; }
 }
 

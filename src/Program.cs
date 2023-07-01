@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using marauderserver.Data;
-using marauderserver.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 builder.Services.AddDbContext<MarauderContext>(options =>
-        options.UseNpgsql(builder.Configuration.GetConnectionString("MarauderContext")));
+        options.UseSqlServer(builder.Configuration.GetConnectionString("MarauderContext")));
 
 
 var app = builder.Build();
@@ -18,10 +17,9 @@ using (var scope = app.Services.CreateScope())
     var services = scope.ServiceProvider;
     try
     {
-        Thread.Sleep(10000);
         var context = services.GetRequiredService<MarauderContext>();
-        var created = context.Database.EnsureCreated();
-
+        context.Database.EnsureCreated();
+        context.Seed();
     }
     catch (Exception ex)
     {
@@ -33,9 +31,15 @@ using (var scope = app.Services.CreateScope())
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
+    //using (var scope = app.Services.CreateScope())
+    //{
+    //    var marauderContext = scope.ServiceProvider.GetRequiredService<MarauderContext>();
+    //    marauderContext.Database.EnsureCreated();
+    //    marauderContext.Seed();
+    //}
+    //app.UseExceptionHandler("/Home/Error");
+    //// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    //app.UseHsts();
 }
 
 app.UseHttpsRedirection();

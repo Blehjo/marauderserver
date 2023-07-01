@@ -20,13 +20,13 @@ namespace marauderserver.Services
 
     public class UserService
     {
-        // private KalanchoeAIDatabaseContext _context;
+        // private MarauderContext _context;
         // private IJwtUtils _jwtUtils;
         // private readonly IMapper _mapper;
         // private readonly IWebHostEnvironment _hostEnvironment;
 
         // public UserService(
-        //     KalanchoeAIDatabaseContext context,
+        //     MarauderContext context,
         //     IJwtUtils jwtUtils,
         //     IMapper mapper,
         //     IWebHostEnvironment hostEnvironment)

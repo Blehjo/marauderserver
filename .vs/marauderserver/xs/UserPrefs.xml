@@ -1,29 +1,25 @@
 ﻿<Properties StartupConfiguration="{8FAFECC5-711F-4DE1-AD3E-0E7361485053}|https">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MultiItemStartupConfigurations />
-  <DisabledProjects>
-    <String>marauderserver.csproj</String>
-  </DisabledProjects>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workbench ActiveDocument="src/appsettings.json">
-    <Files>
-      <File FileName="src/appsettings.json" Line="15" Column="1" />
-      <File FileName="src/appsettings.Development.json" />
-    </Files>
+  <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="marauderserver">
-            <Node name="marauderserver" expanded="True">
-              <Node name="appsettings.json" selected="True" />
+            <Node name="marauderserver">
+              <Node name="Controllers" expanded="True" selected="True" />
             </Node>
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.marauderserver PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MultiItemStartupConfigurations />
+  <DisabledProjects>
+    <String>marauderserver.csproj</String>
+  </DisabledProjects>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.ItemProperties.marauderserver PreferredExecutionTarget="/Applications/Google Chrome.app" />
 </Properties>

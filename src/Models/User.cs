@@ -36,20 +36,15 @@ public class User
     [DataType(DataType.Date)]
     public DateTime DateCreated { get; set; } = DateTime.UtcNow;
 
-    public ICollection<Device>? Devices { get; set; }
-
-    public ICollection<Panel>? Panels { get; set; }
-
-    public ICollection<Community>? Communities { get; set; }
-
+    public ICollection<ArtificialIntelligence>? ArtificialIntelligences { get; set; }
     public ICollection<Chat>? Chats { get; set; }
-
-    public ICollection<Post>? Posts { get; set; }
-
     public ICollection<Comment>? Comments { get; set; }
-
-    public ICollection<Follower>? Followers { get; set; }
-
+    public ICollection<Community>? Communities { get; set; }
+    public ICollection<Device>? Devices { get; set; }
+    public ICollection<DocFile>? DocFiles { get; set; }
     public ICollection<Favorite>? Favorites { get; set; }
+    public ICollection<Follower>? Followers { get; set; }
+    public ICollection<Message>? Messages { get; set; }
+    public ICollection<Panel>? Panels { get; set; }
+    public ICollection<Post>? Posts { get; set; }
 }
-

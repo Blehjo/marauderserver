@@ -25,7 +25,7 @@ namespace marauderserver.Models
         public DateTime DateCreated { get; set; } = DateTime.UtcNow;
 
         public int ChannelId { get; set; }
-        public Channel? Channel { get; set; }
+        public Channel? Channels { get; set; }
 
         public int UserId { get; set; }
         public User? User { get; set; }

@@ -14,9 +14,6 @@ namespace marauderserver.Models
         public int UserId { get; set; }
         public User? User { get; set; }
 
-        public int MessengerId { get; set; }
-        public User? MessagedUser { get; set; }
-
         public ICollection<MessageComment>? MessageComments { get; set; }
     }
 }
