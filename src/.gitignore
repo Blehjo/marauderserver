@@ -3,3 +3,6 @@ obj/
 
 .vs/
 .env
+
+docker-compose.yml
+Dockerfile
