@@ -1,14 +1,49 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using marauderserver.Data;
+using marauderserver.Authorization;
+using marauderserver.Controllers;
+using marauderserver.Helpers;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
 builder.Services.AddControllers();
 
-builder.Services.AddDbContext<MarauderContext>(options =>
-        options.UseSqlServer(builder.Configuration.GetConnectionString("MarauderContext")));
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(MyAllowSpecificOrigins,
+                      policy =>
+                      {
+                          policy.WithOrigins("http://localhost:3000", "https://localhost:7225")
+                          .AllowAnyHeader()
+                          .AllowAnyMethod()
+                          .AllowCredentials();
+                      });
+});
 
+//builder.Services.AddAutoMapper(typeof(Program));
+
+// configure strongly typed settings object
+builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
+
+// configure DI for application services
+builder.Services.AddScoped<ControllerBase, UserController>();
+builder.Services.AddScoped<IJwtUtils, JwtUtils>();
+//builder.Services.AddScoped<IUserService, UserService>();
+
+//builder.Services.AddControllers()
+//    .AddNewtonsoftJson(options =>
+//    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+//);
+
+builder.Services.AddDbContext<MarauderContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("MarauderDb")));
+
+builder.Configuration
+    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+    .AddEnvironmentVariables();
 
 var app = builder.Build();
 
@@ -28,19 +63,19 @@ using (var scope = app.Services.CreateScope())
     }
 }
 
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
-{
-    //using (var scope = app.Services.CreateScope())
-    //{
-    //    var marauderContext = scope.ServiceProvider.GetRequiredService<MarauderContext>();
-    //    marauderContext.Database.EnsureCreated();
-    //    marauderContext.Seed();
-    //}
-    //app.UseExceptionHandler("/Home/Error");
-    //// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    //app.UseHsts();
-}
+//// Configure the HTTP request pipeline.
+//if (!app.Environment.IsDevelopment())
+//{
+//    //using (var scope = app.Services.CreateScope())
+//    //{
+//    //    var marauderContext = scope.ServiceProvider.GetRequiredService<MarauderContext>();
+//    //    marauderContext.Database.EnsureCreated();
+//    //    marauderContext.Seed();
+//    //}
+//    //app.UseExceptionHandler("/Home/Error");
+//    //// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+//    //app.UseHsts();
+//}
 
 app.UseHttpsRedirection();
 
@@ -48,11 +83,21 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseCors(MyAllowSpecificOrigins);
+
 app.UseAuthorization();
+
+var webSocketOptions = new WebSocketOptions
+{
+    KeepAliveInterval = TimeSpan.FromMinutes(2)
+};
+
+webSocketOptions.AllowedOrigins.Add("http://localhost:3000");
+
+app.UseWebSockets(webSocketOptions);
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
-

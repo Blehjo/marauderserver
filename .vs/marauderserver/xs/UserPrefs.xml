@@ -1,14 +1,11 @@
 ﻿<Properties StartupConfiguration="{8FAFECC5-711F-4DE1-AD3E-0E7361485053}|https">
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="src/Models/Message.cs">
+    <Files>
+      <File FileName="src/Models/Message.cs" Line="14" Column="40" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
-        <State name="__root__">
-          <Node name="marauderserver">
-            <Node name="marauderserver">
-              <Node name="Controllers" expanded="True" selected="True" />
-            </Node>
-          </Node>
-        </State>
+        <State name="__root__" />
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>

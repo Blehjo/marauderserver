@@ -6,3 +6,6 @@ obj/
 
 docker-compose.yml
 Dockerfile
+
+appsettings.Development.json
+appsettings.json

@@ -83,6 +83,7 @@
     <None Remove="src\wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js" />
     <None Remove="src\wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt" />
     <None Remove="src\wwwroot\" />
+    <None Remove="Core\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="src\" />
@@ -95,6 +96,7 @@
     <Folder Include="src\Services\" />
     <Folder Include="src\wwwroot\" />
     <Folder Include="src\Properties\" />
+    <Folder Include="Core\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="SocketIOClient" Version="3.0.8" />
@@ -119,6 +121,7 @@
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.4" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.18.1" />
     <PackageReference Include="Betalgo.OpenAI.GPT3" Version="6.8.4" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\Properties\launchSettings.json">
