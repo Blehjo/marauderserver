@@ -4,6 +4,8 @@ using marauderserver.Authorization;
 using marauderserver.Controllers;
 using marauderserver.Helpers;
 using Microsoft.AspNetCore.Mvc;
+using WebSocketSharp;
+using WebSocketSharp.Server;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -87,14 +89,17 @@ app.UseCors(MyAllowSpecificOrigins);
 
 app.UseAuthorization();
 
-var webSocketOptions = new WebSocketOptions
-{
-    KeepAliveInterval = TimeSpan.FromMinutes(2)
-};
+WebSocketServer wssv = new WebSocketServer("ws://127.0.0.1:7890");
 
-webSocketOptions.AllowedOrigins.Add("http://localhost:3000");
+wssv.AddWebSocketService<Echo>("/Echo");
+wssv.AddWebSocketService<EchoAll>("/EchoAll");
 
-app.UseWebSockets(webSocketOptions);
+wssv.Start();
+System.Console.WriteLine("WS server started on ws://127.0.0.1:7890/Echo");
+System.Console.WriteLine("WS server started on ws://127.0.0.1:7890/EchoAll");
+
+//Console.ReadKey();
+wssv.Stop();
 
 app.MapControllerRoute(
     name: "default",
