@@ -83,23 +83,13 @@ app.UseHttpsRedirection();
 
 app.UseStaticFiles();
 
+app.UseWebSockets();
+
 app.UseRouting();
 
 app.UseCors(MyAllowSpecificOrigins);
 
 app.UseAuthorization();
-
-WebSocketServer wssv = new WebSocketServer("ws://127.0.0.1:7890");
-
-wssv.AddWebSocketService<Echo>("/Echo");
-wssv.AddWebSocketService<EchoAll>("/EchoAll");
-
-wssv.Start();
-System.Console.WriteLine("WS server started on ws://127.0.0.1:7890/Echo");
-System.Console.WriteLine("WS server started on ws://127.0.0.1:7890/EchoAll");
-
-//Console.ReadKey();
-wssv.Stop();
 
 app.MapControllerRoute(
     name: "default",
