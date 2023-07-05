@@ -1,13 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using marauderserver.Data;
 using marauderserver.Models;
-using Microsoft.Extensions.Hosting;
 
 namespace marauderserver.Controllers
 {
@@ -43,6 +37,7 @@ namespace marauderserver.Controllers
                 ImageLink = user.ImageLink,
                 Favorites = user.Favorites,
                 Chats = user.Chats,
+                Comments = user.Comments,
                 Communities = user.Communities,
                 Devices = user.Devices,
                 DocFiles = user.DocFiles,
@@ -82,6 +77,7 @@ namespace marauderserver.Controllers
                 ImageLink = user.ImageLink,
                 Favorites = user.Favorites,
                 Chats = user.Chats,
+                Comments = user.Comments,
                 Communities = user.Communities,
                 Devices = user.Devices,
                 DocFiles = user.DocFiles,
@@ -120,6 +116,7 @@ namespace marauderserver.Controllers
                 ImageLink = user.ImageLink,
                 Favorites = user.Favorites,
                 Chats = user.Chats,
+                Comments = user.Comments,
                 Communities = user.Communities,
                 Devices = user.Devices,
                 DocFiles = user.DocFiles,

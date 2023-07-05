@@ -95,6 +95,7 @@
     <Folder Include="src\Services\" />
     <Folder Include="src\wwwroot\" />
     <Folder Include="src\Properties\" />
+    <Folder Include="wwwroot\images\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="SocketIOClient" Version="3.0.8" />
@@ -121,6 +122,8 @@
     <PackageReference Include="Betalgo.OpenAI.GPT3" Version="6.8.4" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="WebSocketSharp-NonPreRelease" Version="1.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="7.0.8" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\Properties\launchSettings.json">
@@ -128,6 +131,9 @@
       <CopyToPublishDirectory>Never</CopyToPublishDirectory>
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="wwwroot\images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="src\wwwroot\css\site.css">

@@ -3,9 +3,9 @@ using marauderserver.Data;
 using marauderserver.Authorization;
 using marauderserver.Controllers;
 using marauderserver.Helpers;
+using marauderserver.Services;
 using Microsoft.AspNetCore.Mvc;
-using WebSocketSharp;
-using WebSocketSharp.Server;
+using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,7 +25,7 @@ builder.Services.AddCors(options =>
                       });
 });
 
-//builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.AddAutoMapper(typeof(Program));
 
 // configure strongly typed settings object
 builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
@@ -33,12 +33,12 @@ builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSet
 // configure DI for application services
 builder.Services.AddScoped<ControllerBase, UserController>();
 builder.Services.AddScoped<IJwtUtils, JwtUtils>();
-//builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IUserService, UserService>();
 
-//builder.Services.AddControllers()
-//    .AddNewtonsoftJson(options =>
-//    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
-//);
+builder.Services.AddControllers()
+    .AddNewtonsoftJson(options =>
+    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+);
 
 builder.Services.AddDbContext<MarauderContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("MarauderDb")));
@@ -65,20 +65,6 @@ using (var scope = app.Services.CreateScope())
     }
 }
 
-//// Configure the HTTP request pipeline.
-//if (!app.Environment.IsDevelopment())
-//{
-//    //using (var scope = app.Services.CreateScope())
-//    //{
-//    //    var marauderContext = scope.ServiceProvider.GetRequiredService<MarauderContext>();
-//    //    marauderContext.Database.EnsureCreated();
-//    //    marauderContext.Seed();
-//    //}
-//    //app.UseExceptionHandler("/Home/Error");
-//    //// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-//    //app.UseHsts();
-//}
-
 app.UseHttpsRedirection();
 
 app.UseStaticFiles();
@@ -90,6 +76,15 @@ app.UseRouting();
 app.UseCors(MyAllowSpecificOrigins);
 
 app.UseAuthorization();
+
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(
+        Path.Combine(builder.Environment.WebRootPath, "images")),
+    RequestPath = "/images"
+});
+
+app.UseMiddleware<JwtMiddleware>();
 
 app.MapControllerRoute(
     name: "default",
