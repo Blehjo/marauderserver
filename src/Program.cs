@@ -84,6 +84,8 @@ app.UseStaticFiles(new StaticFileOptions
     RequestPath = "/images"
 });
 
+app.UseMiddleware<ErrorHandlerMiddleware>();
+
 app.UseMiddleware<JwtMiddleware>();
 
 app.MapControllerRoute(

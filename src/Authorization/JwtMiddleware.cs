@@ -20,7 +20,7 @@ namespace marauderserver.Authorization
             if (userId != null)
             {
                 // attach user to context on successful jwt validation
-                context.Items["User"] = userService.GetById(userId.Value);
+                context.Items["User"] = userService.GetById(userId.Value.ToString());
             }
 
             await _next(context);

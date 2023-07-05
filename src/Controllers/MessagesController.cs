@@ -29,7 +29,7 @@ namespace marauderserver.Controllers
           {
               return NotFound();
           }
-            var userId = Int32.Parse(HttpContext.Request.Cookies["user"]);
+            var userId = HttpContext.Request.Cookies["user"];
 
             var user = await _context.Users.FindAsync(userId);
 
@@ -103,7 +103,7 @@ namespace marauderserver.Controllers
                 return Problem("Entity set 'PlanetNineDatabaseContext.Messages'  is null.");
             }
 
-            message.UserId = Int32.Parse(Request.Cookies["user"]);
+            message.UserId = Request.Cookies["user"];
 
             List<Message> returnedMessage = await _context.Messages.Where(m => m.MessageValue == message.MessageValue && m.UserId == message.UserId).ToListAsync();
             
@@ -139,7 +139,7 @@ namespace marauderserver.Controllers
 
             await _context.SaveChangesAsync();
 
-            var userId = Int32.Parse(HttpContext.Request.Cookies["user"]);
+            var userId = HttpContext.Request.Cookies["user"];
 
             return await _context.Messages.Where(m => m.UserId == userId).ToListAsync();
         }

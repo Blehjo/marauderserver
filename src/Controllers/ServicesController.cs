@@ -137,7 +137,7 @@ namespace marauderserver.Controllers
         [HttpGet("data")]
         public IActionResult GetUserInformation()
         {
-            var userId = Int32.Parse(HttpContext.Request.Cookies["user"]);
+            var userId = HttpContext.Request.Cookies["user"];
 
             var user = _userService.GetById(userId);
 
@@ -147,14 +147,14 @@ namespace marauderserver.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(int id, UpdateRequest model)
+        public IActionResult Update(string id, UpdateRequest model)
         {
             _userService.Update(id, model);
             return Ok(new { message = "User updated successfully" });
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public IActionResult Delete(string id)
         {
             _userService.Delete(id);
             return Ok(new { message = "User deleted successfully" });

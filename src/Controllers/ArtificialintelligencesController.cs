@@ -83,7 +83,7 @@ namespace marauderserver.Controllers
                 return NotFound();
             }
 
-            var userId = Int32.Parse(HttpContext.Request.Cookies["user"]);
+            var userId = HttpContext.Request.Cookies["user"];
 
             return await _context.ArtificialIntelligences.Where(p => p.UserId == userId).Select(x => new ArtificialIntelligence()
             {
@@ -102,7 +102,7 @@ namespace marauderserver.Controllers
 
         // GET: api/ArtificialIntelligence/5
         [HttpGet("/user/{id}")]
-        public async Task<ActionResult<IEnumerable<ArtificialIntelligence>>> GetOtherUserArtificialIntelligence(int id)
+        public async Task<ActionResult<IEnumerable<ArtificialIntelligence>>> GetOtherUserArtificialIntelligence(string id)
         {
             if (_context.ArtificialIntelligences == null)
             {
@@ -188,7 +188,7 @@ namespace marauderserver.Controllers
                 artificialIntelligence.ImageLink = await SaveImage(artificialIntelligence.ImageFile);
             }
 
-            artificialIntelligence.UserId = Int32.Parse(HttpContext.Request.Cookies["user"]);
+            artificialIntelligence.UserId = HttpContext.Request.Cookies["user"];
 
             _context.ArtificialIntelligences.Add(artificialIntelligence);
 

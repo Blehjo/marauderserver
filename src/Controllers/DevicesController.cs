@@ -110,7 +110,12 @@ namespace marauderserver.Controllers
                 return Problem("Entity set 'MarauderContext.Devices'  is null.");
             }
 
+            var userId = HttpContext.Request.Cookies["user"];
+
+            device.UserId = userId;
+
             _context.Devices.Add(device);
+
             try
             {
                 await _context.SaveChangesAsync();

@@ -41,7 +41,7 @@ namespace marauderserver.Controllers
                 return NotFound();
             }
 
-            var userId = Int32.Parse(HttpContext.Request.Cookies["user"]);
+            var userId = HttpContext.Request.Cookies["user"];
 
             return await _context.Favorites.Where(f => f.UserId == userId).Select(x => new Favorite()
             {
@@ -57,7 +57,7 @@ namespace marauderserver.Controllers
 
         // GET: api/favorite/user/id
         [HttpGet("user/{id}")]
-        public async Task<ActionResult<IEnumerable<Favorite>>> GetSingleUserFavorites(int id)
+        public async Task<ActionResult<IEnumerable<Favorite>>> GetSingleUserFavorites(string id)
         {
             if (_context.Favorites == null)
             {
@@ -126,7 +126,7 @@ namespace marauderserver.Controllers
               return Problem("Entity set 'MarauderContext.Favorite'  is null.");
           }
 
-            favorite.UserId = Int32.Parse(HttpContext.Request.Cookies["user"]);
+            favorite.UserId = HttpContext.Request.Cookies["user"];
 
             _context.Favorites.Add(favorite);
             await _context.SaveChangesAsync();

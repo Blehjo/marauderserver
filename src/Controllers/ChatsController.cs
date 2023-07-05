@@ -53,7 +53,7 @@ namespace marauderserver.Controllers
                 return NotFound();
             }
 
-            var userId = Int32.Parse(HttpContext.Request.Cookies["user"]);
+            var userId = HttpContext.Request.Cookies["user"];
 
             return await _context.Chats.Where(c => c.UserId == userId).Select(x => new Chat()
             {
@@ -71,7 +71,7 @@ namespace marauderserver.Controllers
         }
 
         [HttpGet("user/{id}")]
-        public async Task<ActionResult<IEnumerable<Chat>>> GetSingleUserChats(int id)
+        public async Task<ActionResult<IEnumerable<Chat>>> GetSingleUserChats(string id)
         {
             if (_context.Chats == null)
             {
@@ -164,7 +164,7 @@ namespace marauderserver.Controllers
                 return Problem("Entity set 'PlanetNineDatabaseContext.Chats'  is null.");
             }
 
-            chat.UserId = Int32.Parse(HttpContext.Request.Cookies["user"]);
+            chat.UserId = HttpContext.Request.Cookies["user"];
 
             _context.Chats.Add(chat);
 
@@ -190,7 +190,7 @@ namespace marauderserver.Controllers
             _context.Chats.Remove(chat);
             await _context.SaveChangesAsync();
 
-            var userId = Int32.Parse(HttpContext.Request.Cookies["user"]);
+            var userId = HttpContext.Request.Cookies["user"];
 
             return await _context.Chats.Where(c => c.UserId == userId).ToListAsync();
         }

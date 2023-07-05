@@ -8,7 +8,7 @@
 
         public bool IsAnalog { get; set; } = false;
 
-		public int DeviceId { get; set; }
+		public string DeviceId { get; set; }
 
 		public Device Device { get; set; }
 

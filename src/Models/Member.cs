@@ -15,7 +15,7 @@ namespace marauderserver.Models
         public int CommunityId { get; set; }
         public Community? Community { get; set; }
 
-        public int UserId { get; set; }
+        public string? UserId { get; set; }
         public User? User { get; set; }
 	}
 }

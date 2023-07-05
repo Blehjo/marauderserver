@@ -96,7 +96,7 @@ namespace marauderserver.Controllers
         {
             messageComment.MessageId = id;
 
-            messageComment.UserId = Int32.Parse(Request.Cookies["user"]);
+            messageComment.UserId = Request.Cookies["user"];
 
             if (_context.MessageComments == null)
             {

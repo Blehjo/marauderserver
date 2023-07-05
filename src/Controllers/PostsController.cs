@@ -78,7 +78,7 @@ namespace marauderserver.Controllers
                 return NotFound();
             }
 
-            var userId = Int32.Parse(HttpContext.Request.Cookies["user"]);
+            var userId = HttpContext.Request.Cookies["user"];
 
             return await _context.Posts.Where(p => p.UserId == userId).Select(x => new Post()
             {
@@ -94,7 +94,7 @@ namespace marauderserver.Controllers
         }
 
         [HttpGet("user/{id}")]
-        public async Task<ActionResult<IEnumerable<Post>>> GetSingleUserPosts(int id)
+        public async Task<ActionResult<IEnumerable<Post>>> GetSingleUserPosts(string id)
         {
             if (_context.Posts == null)
             {
@@ -170,7 +170,7 @@ namespace marauderserver.Controllers
                 post.MediaLink = await SaveImage(post.ImageFile);
             }
 
-            post.UserId = Int32.Parse(HttpContext.Request.Cookies["user"]);
+            post.UserId = HttpContext.Request.Cookies["user"];
 
             _context.Posts.Add(post);
 
@@ -206,7 +206,7 @@ namespace marauderserver.Controllers
             _context.Posts.Remove(post);
             await _context.SaveChangesAsync();
 
-            var userId = Int32.Parse(HttpContext.Request.Cookies["user"]);
+            var userId = HttpContext.Request.Cookies["user"];
 
             return await _context.Posts.Where(c => c.UserId == userId).ToListAsync();
         }

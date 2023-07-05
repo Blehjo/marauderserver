@@ -8,7 +8,7 @@ namespace marauderserver.Models
 
         public int FollowerUser { get; set; }
 
-        public int UserId { get; set; }
+        public string? UserId { get; set; }
         public User? User { get; set; }
 
         [DataType(DataType.Date)]

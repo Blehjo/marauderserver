@@ -105,7 +105,7 @@ namespace marauderserver.Controllers
                 return Problem("Entity set 'MarauderContext.ChannelComments'  is null.");
             }
 
-            channelComment.UserId = Int32.Parse(HttpContext.Request.Cookies["user"]);
+            channelComment.UserId = HttpContext.Request.Cookies["user"];
 
             if (channelComment.ImageFile != null)
             {

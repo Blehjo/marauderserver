@@ -70,7 +70,7 @@ namespace marauderserver.Controllers
         }
 
         [HttpGet("user/{id}")]
-        public async Task<ActionResult<IEnumerable<Panel>>> GetSingleUserPanels(int id)
+        public async Task<ActionResult<IEnumerable<Panel>>> GetSingleUserPanels(string id)
         {
             if (_context.Panels == null)
             {
@@ -100,9 +100,7 @@ namespace marauderserver.Controllers
 
             var user = HttpContext.Request.Cookies["user"];
 
-            int userId = Int32.Parse(user);
-
-            return await _context.Panels.Where(p => p.UserId == userId).Select(p => new Panel() {
+            return await _context.Panels.Where(p => p.UserId == user).Select(p => new Panel() {
                 PanelId = p.PanelId,
                 Title = p.Title,
                 XCoord = p.XCoord,
@@ -142,7 +140,7 @@ namespace marauderserver.Controllers
                 }
             }
 
-            var userId = Int32.Parse(HttpContext.Request.Cookies["user"]);
+            var userId = HttpContext.Request.Cookies["user"];
 
             return await _context.Panels.Where(p => p.UserId == userId).Select(p => new Panel() {
                 PanelId = p.PanelId,
@@ -166,7 +164,7 @@ namespace marauderserver.Controllers
               return Problem("Entity set 'MarauderContext.Panels'  is null.");
           }
 
-            panel.UserId = Int32.Parse(HttpContext.Request.Cookies["user"]);
+            panel.UserId = HttpContext.Request.Cookies["user"];
 
             _context.Panels.Add(panel);
             await _context.SaveChangesAsync();

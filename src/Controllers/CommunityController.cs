@@ -75,7 +75,7 @@ namespace marauderserver.Controllers
         }
 
         [HttpGet("user/{id}")]
-        public async Task<ActionResult<IEnumerable<Community>>> GetSingleUserCommunities(int id)
+        public async Task<ActionResult<IEnumerable<Community>>> GetSingleUserCommunities(string id)
         {
             if (_context.Communities == null)
             {
@@ -147,7 +147,7 @@ namespace marauderserver.Controllers
                 return Problem("Entity set 'MarauderContext.Communities'  is null.");
             }
 
-            community.UserId = Int32.Parse(HttpContext.Request.Cookies["user"]);
+            community.UserId = HttpContext.Request.Cookies["user"];
 
             if (community.ImageFile != null)
             {
@@ -190,7 +190,7 @@ namespace marauderserver.Controllers
             _context.Communities.Remove(community);
             await _context.SaveChangesAsync();
 
-            var userId = Int32.Parse(HttpContext.Request.Cookies["user"]);
+            var userId = HttpContext.Request.Cookies["user"];
 
             return await _context.Communities.Where(c => c.UserId == userId).ToListAsync();
         }

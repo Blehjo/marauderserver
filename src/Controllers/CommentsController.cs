@@ -132,7 +132,7 @@ namespace marauderserver.Controllers
                 comment.MediaLink = await SaveImage(comment.ImageFile);
             }
 
-            comment.UserId = Int32.Parse(HttpContext.Request.Cookies["user"]);
+            comment.UserId = HttpContext.Request.Cookies["user"];
 
             comment.PostId = id;
 

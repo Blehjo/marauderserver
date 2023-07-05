@@ -12,10 +12,10 @@ namespace marauderserver.Services
     {
         AuthenticateResponse Authenticate(AuthenticateRequest model);
         IEnumerable<User> GetAll();
-        User GetById(int id);
+        User GetById(string id);
         void Register(RegisterRequest model);
-        void Update(int id, UpdateRequest model);
-        void Delete(int id);
+        void Update(string id, UpdateRequest model);
+        void Delete(string id);
     }
 
     public class UserService : IUserService
@@ -34,7 +34,7 @@ namespace marauderserver.Services
             _context = context;
             _jwtUtils = jwtUtils;
             _mapper = mapper;
-            this._hostEnvironment = hostEnvironment;
+            _hostEnvironment = hostEnvironment;
         }
 
         public AuthenticateResponse Authenticate(AuthenticateRequest model)
@@ -59,7 +59,7 @@ namespace marauderserver.Services
             return _context.Users;
         }
 
-        public User GetById(int id)
+        public User GetById(string id)
         {
             return GetUser(id);
         }
@@ -81,7 +81,7 @@ namespace marauderserver.Services
             _context.SaveChanges();
         }
 
-        public void Update(int id, UpdateRequest model)
+        public void Update(string id, UpdateRequest model)
         {
             var user = GetUser(id);
 
@@ -99,7 +99,7 @@ namespace marauderserver.Services
             _context.SaveChanges();
         }
 
-        public void Delete(int id)
+        public void Delete(string id)
         {
             var user = GetUser(id);
             _context.Users.Remove(user);
@@ -108,7 +108,7 @@ namespace marauderserver.Services
 
         // helper methods
 
-        private User GetUser(int id)
+        private User GetUser(string id)
         {
             var user = _context.Users.Find(id);
             if (user == null) throw new KeyNotFoundException("User not found");

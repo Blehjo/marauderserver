@@ -22,7 +22,7 @@ namespace marauderserver.Models
         [DataType(DataType.Date)]
         public DateTime DateCreated { get; set; } = DateTime.UtcNow;
 
-        public int ChatId { get; set; }
+        public int? ChatId { get; set; }
         public Chat? Chat { get; set; }
 
         public ICollection<Favorite>? Favorites { get; set; }

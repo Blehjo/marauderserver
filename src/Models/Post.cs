@@ -22,7 +22,7 @@ namespace marauderserver.Models
         [DataType(DataType.Date)]
         public DateTime DateCreated { get; set; } = DateTime.UtcNow;
 
-        public int UserId { get; set; }
+        public string? UserId { get; set; }
 
         public User? User { get; set; }
 

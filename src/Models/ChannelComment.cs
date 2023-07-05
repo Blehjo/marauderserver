@@ -24,10 +24,10 @@ namespace marauderserver.Models
         [DataType(DataType.Date)]
         public DateTime DateCreated { get; set; } = DateTime.UtcNow;
 
-        public int ChannelId { get; set; }
+        public int? ChannelId { get; set; }
         public Channel? Channels { get; set; }
 
-        public int UserId { get; set; }
+        public string? UserId { get; set; }
         public User? User { get; set; }
     }
 }

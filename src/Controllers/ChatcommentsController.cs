@@ -69,7 +69,7 @@ namespace marauderserver.Controllers
                 return NotFound();
             }
 
-            var userId = Int32.Parse(HttpContext.Request.Cookies["user"]);
+            var userId = HttpContext.Request.Cookies["user"];
 
             return await _context.ChatComments.Where(c => c.Chat.UserId == userId).Select(x => new ChatComment()
             {
