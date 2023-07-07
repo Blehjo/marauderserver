@@ -25,7 +25,9 @@ namespace marauderserver.Controllers
                 return NotFound();
             }
 
-            return await _context.Devices.Select(d => new Device() {
+            var userId = HttpContext.Request.Cookies["user"];
+
+            return await _context.Devices.Where(d => d.UserId == userId).Select(d => new Device() {
                 DeviceId = d.DeviceId,
                 DeviceName = d.DeviceName,
                 DeviceType = d.DeviceType,
@@ -47,6 +49,13 @@ namespace marauderserver.Controllers
             var device = await _context.Devices.FindAsync(id);
 
             if (device == null)
+            {
+                return NotFound();
+            }
+
+            var userId = HttpContext.Request.Cookies["user"];
+
+            if (device.UserId != userId)
             {
                 return NotFound();
             }

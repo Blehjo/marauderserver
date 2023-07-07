@@ -19,7 +19,7 @@ namespace marauderserver.Models
         public string? UserId { get; set; }
         public User? User { get; set; }
 
-        public ICollection<ArtificialIntelligence>? ArtificialIntelligences { get; set; }
+        public ICollection<ArtificialIntelligenceChat>? ArtificialIntelligences { get; set; }
 
 		public ICollection<ChatComment>? ChatComments { get; set; }
 

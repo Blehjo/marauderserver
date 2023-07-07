@@ -1,5 +1,6 @@
-﻿using marauderserver.Models;
+using marauderserver.Models;
 using Microsoft.EntityFrameworkCore;
+using static OpenAI.GPT3.ObjectModels.SharedModels.IOpenAiModels;
 
 namespace marauderserver.Data
 {
@@ -52,5 +53,21 @@ namespace marauderserver.Data
 		public DbSet<Post> Posts { get; set; } = default!;
 
 		public DbSet<User> Users { get; set; } = default!;
-	}
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+			modelBuilder.Entity<ArtificialIntelligenceChat>()
+				.HasKey(ac => new { ac.ArtificialIntelligenceId, ac.ChatId });
+			modelBuilder.Entity<ArtificialIntelligenceChat>()
+				.HasOne(ac => ac.ArtificialIntelligence)
+				.WithMany(ac => ac.Chats)
+				.HasForeignKey(ac => ac.ArtificialIntelligenceId);
+			modelBuilder.Entity<ArtificialIntelligenceChat>()
+                .HasOne(ac => ac.Chat)
+                .WithMany(ac => ac.ArtificialIntelligences)
+                .HasForeignKey(ac => ac.ChatId);
+        }
+
+        public DbSet<marauderserver.Models.ArtificialIntelligenceChat> ArtificialIntelligenceChat { get; set; } = default!;
+    }
 }

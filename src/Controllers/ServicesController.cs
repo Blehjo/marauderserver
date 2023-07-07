@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace marauderserver.Controllers
 {
-    [Authorization.Authorize]
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class UsersController : ControllerBase
@@ -31,7 +31,7 @@ namespace marauderserver.Controllers
             _userService = userService;
             _mapper = mapper;
             _appSettings = appSettings.Value;
-            this._hostEnvironment = hostEnvironment;
+            _hostEnvironment = hostEnvironment;
         }
 
         [AllowAnonymous]
@@ -134,6 +134,7 @@ namespace marauderserver.Controllers
            return Ok(users);
         }
 
+        [AllowAnonymous]
         [HttpGet("data")]
         public IActionResult GetUserInformation()
         {
