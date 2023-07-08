@@ -90,7 +90,7 @@ namespace marauderserver.Controllers
             };
         }
 
-        [HttpGet("{username}")]
+        [HttpGet("username/{username}")]
         public async Task<ActionResult<User>> GetUsername(string username)
         {
             if (_context.Users == null)
