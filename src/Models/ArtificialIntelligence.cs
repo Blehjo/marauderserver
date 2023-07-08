@@ -27,7 +27,7 @@ namespace marauderserver.Models
 
         public User? User { get; set; }
 
-        public ICollection<ArtificialIntelligenceChat>? Chats { get; set; }
+        public ICollection<Chat>? Chats { get; set; }
 
         public ICollection<ChatComment>? ChatComments { get; set; }
     }

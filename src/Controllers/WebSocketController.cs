@@ -70,8 +70,102 @@ namespace marauderserver.Controllers
             _logger.Log(LogLevel.Information, "WebSocket connection closed");
         }
 
-        [HttpGet("/arduino")]
-        public async Task Post(WebSocket webSocket, int id, [FromForm] MessageComment messageComment)
+
+
+        [HttpGet("/channelcomments/{id}")]
+        public async Task ChannelComment(WebSocket webSocket, int id, [FromForm] MessageComment messageComment)
+        {
+            var buffer = new byte[1024 * 4];
+            var result = await webSocket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
+
+            while (!result.CloseStatus.HasValue)
+            {
+                Encoding u8 = Encoding.UTF8;
+                byte[] message = u8.GetBytes(messageComment.MessageValue);
+
+                await webSocket.SendAsync(new ArraySegment<byte>(message, 0, message.Length), result.MessageType, result.EndOfMessage, CancellationToken.None);
+                _logger.Log(LogLevel.Information, "Message sent to Client");
+
+                buffer = new byte[1024 * 4];
+                result = await webSocket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
+                _logger.Log(LogLevel.Information, "Message received from Client");
+            }
+
+            await webSocket.CloseAsync(result.CloseStatus.Value, result.CloseStatusDescription, CancellationToken.None);
+            _logger.Log(LogLevel.Information, "WebSocket connection closed");
+        }
+
+        [HttpGet("/comments/{id}")]
+        public async Task Comment(WebSocket webSocket, int id, [FromForm] MessageComment messageComment)
+        {
+            var buffer = new byte[1024 * 4];
+            var result = await webSocket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
+
+            while (!result.CloseStatus.HasValue)
+            {
+                Encoding u8 = Encoding.UTF8;
+                byte[] message = u8.GetBytes(messageComment.MessageValue);
+
+                await webSocket.SendAsync(new ArraySegment<byte>(message, 0, message.Length), result.MessageType, result.EndOfMessage, CancellationToken.None);
+                _logger.Log(LogLevel.Information, "Message sent to Client");
+
+                buffer = new byte[1024 * 4];
+                result = await webSocket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
+                _logger.Log(LogLevel.Information, "Message received from Client");
+            }
+
+            await webSocket.CloseAsync(result.CloseStatus.Value, result.CloseStatusDescription, CancellationToken.None);
+            _logger.Log(LogLevel.Information, "WebSocket connection closed");
+        }
+
+        [HttpGet("/messages/{id}")]
+        public async Task Message(WebSocket webSocket, int id, [FromForm] MessageComment messageComment)
+        {
+            var buffer = new byte[1024 * 4];
+            var result = await webSocket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
+
+            while (!result.CloseStatus.HasValue)
+            {
+                Encoding u8 = Encoding.UTF8;
+                byte[] message = u8.GetBytes(messageComment.MessageValue);
+
+                await webSocket.SendAsync(new ArraySegment<byte>(message, 0, message.Length), result.MessageType, result.EndOfMessage, CancellationToken.None);
+                _logger.Log(LogLevel.Information, "Message sent to Client");
+
+                buffer = new byte[1024 * 4];
+                result = await webSocket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
+                _logger.Log(LogLevel.Information, "Message received from Client");
+            }
+
+            await webSocket.CloseAsync(result.CloseStatus.Value, result.CloseStatusDescription, CancellationToken.None);
+            _logger.Log(LogLevel.Information, "WebSocket connection closed");
+        }
+
+        [HttpGet("/devices/{id}")]
+        public async Task Device(WebSocket webSocket, int id, [FromForm] MessageComment messageComment)
+        {
+            var buffer = new byte[1024 * 4];
+            var result = await webSocket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
+
+            while (!result.CloseStatus.HasValue)
+            {
+                Encoding u8 = Encoding.UTF8;
+                byte[] message = u8.GetBytes(messageComment.MessageValue);
+
+                await webSocket.SendAsync(new ArraySegment<byte>(message, 0, message.Length), result.MessageType, result.EndOfMessage, CancellationToken.None);
+                _logger.Log(LogLevel.Information, "Message sent to Client");
+
+                buffer = new byte[1024 * 4];
+                result = await webSocket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
+                _logger.Log(LogLevel.Information, "Message received from Client");
+            }
+
+            await webSocket.CloseAsync(result.CloseStatus.Value, result.CloseStatusDescription, CancellationToken.None);
+            _logger.Log(LogLevel.Information, "WebSocket connection closed");
+        }
+
+        [HttpGet("/chats/{id}")]
+        public async Task Crew(WebSocket webSocket, int id, [FromForm] MessageComment messageComment)
         {
             var buffer = new byte[1024 * 4];
             var result = await webSocket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);

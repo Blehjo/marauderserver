@@ -38,7 +38,7 @@ namespace marauderserver.Controllers
                 DateCreated = x.DateCreated,
                 UserId = x.UserId,
                 User = x.User,
-                ArtificialIntelligences = x.ArtificialIntelligences,
+                ArtificialIntelligence = x.ArtificialIntelligence,
                 ChatComments = x.ChatComments,
                 Comments = x.Comments,
                 Favorites = x.Favorites
@@ -63,7 +63,7 @@ namespace marauderserver.Controllers
                 DateCreated = x.DateCreated,
                 UserId = x.UserId,
                 User = x.User,
-                ArtificialIntelligences = x.ArtificialIntelligences,
+                ArtificialIntelligence = x.ArtificialIntelligence,
                 ChatComments = x.ChatComments,
                 Comments = x.Comments,
                 Favorites = x.Favorites
@@ -86,7 +86,7 @@ namespace marauderserver.Controllers
                 DateCreated = x.DateCreated,
                 UserId = x.UserId,
                 User = x.User,
-                ArtificialIntelligences = x.ArtificialIntelligences,
+                ArtificialIntelligence = x.ArtificialIntelligence,
                 ChatComments = x.ChatComments,
                 Comments = x.Comments,
                 Favorites = x.Favorites
@@ -116,7 +116,7 @@ namespace marauderserver.Controllers
                 DateCreated = chat.DateCreated,
                 UserId = chat.UserId,
                 User = chat.User,
-                ArtificialIntelligences = chat.ArtificialIntelligences,
+                ArtificialIntelligence = chat.ArtificialIntelligence,
                 ChatComments = chat.ChatComments,
                 Comments = chat.Comments,
                 Favorites = chat.Favorites
