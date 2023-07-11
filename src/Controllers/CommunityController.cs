@@ -15,7 +15,7 @@ namespace marauderserver.Controllers
         public CommunityController(MarauderContext context, IWebHostEnvironment hostEnvironment)
         {
             _context = context;
-            this._hostEnvironment = hostEnvironment;
+            _hostEnvironment = hostEnvironment;
         }
 
         // GET: api/Community
@@ -97,7 +97,7 @@ namespace marauderserver.Controllers
         // PUT: api/Community/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<ActionResult<Community>> PutCommunity(int id, Community community)
+        public async Task<ActionResult<IEnumerable<Community>>> PutCommunity(int id, Community community)
         {
             if (id != community.CommunityId)
             {
@@ -122,19 +122,16 @@ namespace marauderserver.Controllers
                 }
             }
 
-            return new Community() 
+            return await _context.Communities.Where(c => c.UserId == community.UserId).Select(x => new Community()
             {
-                CommunityId = community.CommunityId,
-                CommunityName = community.CommunityName,
-                Description = community.Description,
-                DateCreated = community.DateCreated,
-                UserId = community.UserId,
-                MediaLink = community.MediaLink,
-                User = community.User,
-                Members = community.Members,
-                Channels = community.Channels,
-                ImageSource = String.Format("{0}://{1}{2}/Images/{3}", Request.Scheme, Request.Host, Request.PathBase, community.MediaLink)
-            };
+                CommunityId = x.CommunityId,
+                CommunityName = x.CommunityName,
+                Description = x.Description,
+                DateCreated = x.DateCreated,
+                UserId = x.UserId,
+                MediaLink = x.MediaLink,
+                ImageSource = String.Format("{0}://{1}{2}/Images/{3}", Request.Scheme, Request.Host, Request.PathBase, x.MediaLink)
+            }).ToListAsync();
         }
 
         // POST: api/Community

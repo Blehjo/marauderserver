@@ -12,9 +12,9 @@ namespace marauderserver.Models
 	{
         public int CommunityId { get; set; }
 
-        public string CommunityName { get; set; }
+        public string? CommunityName { get; set; }
 
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
         public string? MediaLink { get; set; }
 
