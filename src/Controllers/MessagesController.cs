@@ -40,6 +40,7 @@ namespace marauderserver.Controllers
                 DateCreated = x.DateCreated,
                 User = x.User,
                 UserId = x.UserId,
+                ReceiverId = x.ReceiverId,
                 MessageComments = x.MessageComments
             }).ToListAsync();
         }
@@ -111,6 +112,8 @@ namespace marauderserver.Controllers
             {
                 return CreatedAtAction("GetMessage", returnedMessage);
             }
+
+            message.Receiver = await _context.Users.FindAsync(message.ReceiverId);
 
             _context.Messages.Add(message);
 
