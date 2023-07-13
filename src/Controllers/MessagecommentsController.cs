@@ -112,7 +112,7 @@ namespace marauderserver.Controllers
             
             await _context.SaveChangesAsync();
 
-            return await _context.MessageComments.Where(m => m.UserId == messageComment.UserId).Select(x => new MessageComment()
+            return await _context.MessageComments.Where(m => m.MessageId == id).Select(x => new MessageComment()
             {
                 MessageCommentId = x.MessageCommentId,
                 MessageId = x.MessageId,

@@ -85,12 +85,13 @@ namespace marauderserver.Controllers
 
         // GET: api/ChatComment/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<ChatComment>> GetChatComment(int id)
+        public async Task<ActionResult<IEnumerable<ChatComment>>> GetChatComment(int id)
         {
-          if (_context.ChatComments == null)
-          {
-              return NotFound();
-          }
+            if (_context.ChatComments == null)
+            {
+                return NotFound();
+            }
+
             var chatComment = await _context.ChatComments.FindAsync(id);
 
             if (chatComment == null)
@@ -98,7 +99,16 @@ namespace marauderserver.Controllers
                 return NotFound();
             }
 
-            return chatComment;
+            return await _context.ChatComments.Where(c => c.ChatId == id).Select(x => new ChatComment()
+            {
+                ChatCommentId = x.ChatCommentId,
+                ChatId = x.ChatId,
+                ChatValue = x.ChatValue,
+                MediaLink = x.MediaLink,
+                DateCreated = x.DateCreated,
+                Favorites = x.Favorites,
+                ImageSource = String.Format("{0}://{1}{2}/images/{3}", Request.Scheme, Request.Host, Request.PathBase, x.ChatValue)
+            }).ToListAsync();
         }
 
         // PUT: api/ChatComment/5

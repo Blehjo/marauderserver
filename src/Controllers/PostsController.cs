@@ -55,8 +55,6 @@ namespace marauderserver.Controllers
                 return NotFound();
             }
 
-            post.ImageSource = String.Format("{0}://{1}{2}/images/{3}", Request.Scheme, Request.Host, Request.PathBase, post.MediaLink);
-
             return new Post()
             {
                 PostId = post.PostId,
