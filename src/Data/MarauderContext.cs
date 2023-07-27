@@ -52,6 +52,8 @@ namespace marauderserver.Data
 
 		public DbSet<Post> Posts { get; set; } = default!;
 
-		public DbSet<User> Users { get; set; } = default!;
+        public DbSet<Shape> Shapes { get; set; } = default!;
+
+        public DbSet<User> Users { get; set; } = default!;
     }
 }

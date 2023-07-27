@@ -9,6 +9,8 @@
 		public string? UserId { get; set; }
 
 		public User? User { get; set; }
+
+		public ICollection<Shape> Shapes { get; set; }
 	}
 }
 

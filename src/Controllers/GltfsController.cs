@@ -28,6 +28,7 @@ namespace marauderserver.Controllers
             return await _context.Gltfs.Select(g => new Gltf() {
                 GltfId = g.GltfId,
                 FileInformation = g.FileInformation,
+                Shapes = g.Shapes,
                 UserId = g.UserId,
                 User = g.User
             }).ToListAsync();
@@ -52,6 +53,7 @@ namespace marauderserver.Controllers
             return new Gltf() {
                 GltfId = gltf.GltfId,
                 FileInformation = gltf.FileInformation,
+                Shapes = gltf.Shapes,
                 UserId = gltf.UserId,
                 User = gltf.User
             };
@@ -89,6 +91,7 @@ namespace marauderserver.Controllers
             return await _context.Gltfs.Where(g => g.UserId == gltf.UserId).Select(g => new Gltf() {
                 GltfId = g.GltfId,
                 FileInformation = g.FileInformation,
+                Shapes = g.Shapes,
                 UserId = g.UserId,
                 User = g.User
             }).ToListAsync();
@@ -110,6 +113,7 @@ namespace marauderserver.Controllers
             return await _context.Gltfs.Where(g => g.UserId == gltf.UserId).Select(g => new Gltf() {
                 GltfId = g.GltfId,
                 FileInformation = g.FileInformation,
+                Shapes = g.Shapes,
                 UserId = g.UserId,
                 User = g.User
             }).ToListAsync();
@@ -136,6 +140,7 @@ namespace marauderserver.Controllers
             return await _context.Gltfs.Where(g => g.UserId == gltf.UserId).Select(g => new Gltf() {
                 GltfId = g.GltfId,
                 FileInformation = g.FileInformation,
+                Shapes = g.Shapes,
                 UserId = g.UserId,
                 User = g.User
             }).ToListAsync();
