@@ -97,8 +97,8 @@ namespace marauderserver.Controllers
         }
 
         // DELETE: api/Shape/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteShape(int id)
+        [HttpDelete("{id}/{shapeId}")]
+        public async Task<ActionResult<IEnumerable<Shape>>> DeleteShape(int id, int shapeId)
         {
             if (_context.Shapes == null)
             {
@@ -113,7 +113,7 @@ namespace marauderserver.Controllers
             _context.Shapes.Remove(shape);
             await _context.SaveChangesAsync();
 
-            return NoContent();
+            return await _context.Shapes.Where(s => s.GltfId == id).ToListAsync();
         }
 
         private bool ShapeExists(int id)
