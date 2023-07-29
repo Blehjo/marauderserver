@@ -24,6 +24,8 @@
 
 		public string? Color { get; set; }
 
+		public int? ColorValue { get; set; }
+
 		public int? GltfId { get; set; }
 
 		public Gltf? Gltf { get; set; }
