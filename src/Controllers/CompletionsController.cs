@@ -23,7 +23,7 @@ namespace marauderserver.Controllers
             var config = new ConfigurationBuilder()
                 .AddUserSecrets<Program>()
                 .Build();
-            string apiKey = "openaikey;
+            string apiKey = "openaikey";
 
             var openAiService = new OpenAIService(new OpenAiOptions()
             {

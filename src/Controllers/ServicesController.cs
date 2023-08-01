@@ -142,6 +142,8 @@ namespace marauderserver.Controllers
 
             var user = _userService.GetById(userId);
 
+            if (user != null) 
+
             user.ImageSource = String.Format("{0}://{1}{2}/images/{3}", Request.Scheme, Request.Host, Request.PathBase, user.ImageLink);
 
             return Ok(user);
