@@ -3,9 +3,13 @@ using System.Net.WebSockets;
 using System.Text;
 using Microsoft.AspNetCore.Mvc;
 using marauderserver.Data;
+using marauderserver.Hubs;
+using marauderserver.Hubs.Clients;
 using marauderserver.Models;
 using Azure.Messaging;
 using System.Runtime.Serialization.Formatters.Binary;
+using Microsoft.AspNetCore.SignalR;
+using OpenAI.GPT3.ObjectModels.RequestModels;
 
 namespace marauderserver.Controllers
 {
@@ -21,28 +25,39 @@ namespace marauderserver.Controllers
 
         private readonly ILogger<WebSocketsController> _logger;
 
-        public WebSocketsController(MarauderContext context, IWebHostEnvironment hostEnvironment, ILogger<WebSocketsController> logger)
+        private readonly IHubContext<ChatHub, IChatClient> _chatHub;
+
+        public WebSocketsController(MarauderContext context, IWebHostEnvironment hostEnvironment, ILogger<WebSocketsController> logger, IHubContext<ChatHub, IChatClient> chatHub)
         {
             _context = context;
             _hostEnvironment = hostEnvironment;
             _logger = logger;
+            _chatHub = chatHub;
         }
 
-        [HttpGet("/ws/{id}")]
+        [HttpGet("/ws/messages/{id}")]
         public async Task Get()
         {
             if (HttpContext.WebSockets.IsWebSocketRequest)
             {
                 using var webSocket = await HttpContext.WebSockets.AcceptWebSocketAsync();
                 _logger.Log(LogLevel.Information, "WebSocket connection established");
-                await Echo(webSocket);
+                await Nacho(webSocket);
             }
             else
             {
                 HttpContext.Response.StatusCode = BadRequest;
             }
         }
-        
+
+        [HttpPost("messages")]
+        public async Task Post(MessageComment messagecomment)
+        {
+            // run some logic...
+
+            await _chatHub.Clients.All.ReceiveMessage(messagecomment);
+        }
+
         private async Task Echo(WebSocket webSocket)
         {
             var buffer = new byte[1024 * 4];
@@ -68,6 +83,30 @@ namespace marauderserver.Controllers
 
             await webSocket.CloseAsync(result.CloseStatus.Value, result.CloseStatusDescription, CancellationToken.None);
             _logger.Log(LogLevel.Information, "WebSocket connection closed");
+        }
+
+        private static async Task Nacho(WebSocket webSocket)
+        {
+            var buffer = new byte[1024 * 4];
+            var receiveResult = await webSocket.ReceiveAsync(
+                new ArraySegment<byte>(buffer), CancellationToken.None);
+
+            while (!receiveResult.CloseStatus.HasValue)
+            {
+                await webSocket.SendAsync(
+                    new ArraySegment<byte>(buffer, 0, receiveResult.Count),
+                    receiveResult.MessageType,
+                    receiveResult.EndOfMessage,
+                    CancellationToken.None);
+
+                receiveResult = await webSocket.ReceiveAsync(
+                    new ArraySegment<byte>(buffer), CancellationToken.None);
+            }
+
+            await webSocket.CloseAsync(
+                receiveResult.CloseStatus.Value,
+                receiveResult.CloseStatusDescription,
+                CancellationToken.None);
         }
 
 

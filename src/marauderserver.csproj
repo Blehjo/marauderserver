@@ -83,6 +83,8 @@
     <None Remove="src\wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js" />
     <None Remove="src\wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt" />
     <None Remove="src\wwwroot\" />
+    <None Remove="Hubs\" />
+    <None Remove="Hubs\Clients\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="src\" />
@@ -96,6 +98,8 @@
     <Folder Include="src\wwwroot\" />
     <Folder Include="src\Properties\" />
     <Folder Include="wwwroot\images\" />
+    <Folder Include="Hubs\" />
+    <Folder Include="Hubs\Clients\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="SocketIOClient" Version="3.0.8" />
