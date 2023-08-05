@@ -25,9 +25,9 @@ namespace marauderserver.Controllers
 
         private readonly ILogger<WebSocketsController> _logger;
 
-        private readonly IHubContext<ChatHub, IChatClient> _chatHub;
+        private readonly IHubContext<ChatHub> _chatHub;
 
-        public WebSocketsController(MarauderContext context, IWebHostEnvironment hostEnvironment, ILogger<WebSocketsController> logger, IHubContext<ChatHub, IChatClient> chatHub)
+        public WebSocketsController(MarauderContext context, IWebHostEnvironment hostEnvironment, ILogger<WebSocketsController> logger, IHubContext<ChatHub> chatHub)
         {
             _context = context;
             _hostEnvironment = hostEnvironment;
@@ -35,7 +35,7 @@ namespace marauderserver.Controllers
             _chatHub = chatHub;
         }
 
-        [HttpGet("/ws/messages/{id}")]
+        [Route("/ws/messages/{id}")]
         public async Task Get()
         {
             if (HttpContext.WebSockets.IsWebSocketRequest)
@@ -55,7 +55,7 @@ namespace marauderserver.Controllers
         {
             // run some logic...
 
-            await _chatHub.Clients.All.ReceiveMessage(messagecomment);
+            await _chatHub.Clients.All.SendAsync("messageReceived", messagecomment);
         }
 
         private async Task Echo(WebSocket webSocket)

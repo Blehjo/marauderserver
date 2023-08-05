@@ -6,6 +6,7 @@ using marauderserver.Helpers;
 using marauderserver.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.FileProviders;
+using marauderserver.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -51,6 +52,11 @@ builder.Configuration
 
 var app = builder.Build();
 
+var webSocketOptions = new WebSocketOptions
+{
+    KeepAliveInterval = TimeSpan.FromMinutes(2)
+};
+
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
@@ -71,7 +77,7 @@ app.UseHttpsRedirection();
 
 app.UseStaticFiles();
 
-app.UseWebSockets();
+app.UseWebSockets(webSocketOptions);
 
 app.UseRouting();
 
@@ -93,5 +99,10 @@ app.UseMiddleware<JwtMiddleware>();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapHub<ChatHub>("/hub");
+});
 
 app.Run();

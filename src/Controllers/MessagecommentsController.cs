@@ -2,6 +2,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using marauderserver.Data;
 using marauderserver.Models;
+using marauderserver.Hubs;
+using marauderserver.Hubs.Clients;
+using Microsoft.AspNetCore.SignalR;
 
 namespace marauderserver.Controllers
 {
@@ -11,11 +14,13 @@ namespace marauderserver.Controllers
     {
         private readonly MarauderContext _context;
         private readonly IWebHostEnvironment _hostEnvironment;
+        private readonly IHubContext<ChatHub> _chatHub;
 
-        public MessagecommentController(MarauderContext context, IWebHostEnvironment hostEnvironment)
+        public MessagecommentController(MarauderContext context, IWebHostEnvironment hostEnvironment, IHubContext<ChatHub> chatHub)
         {
             _context = context;
-            this._hostEnvironment = hostEnvironment;
+            _hostEnvironment = hostEnvironment;
+            _chatHub = chatHub;
         }
 
         // GET: api/MessageComment
@@ -111,6 +116,8 @@ namespace marauderserver.Controllers
             _context.MessageComments.Add(messageComment);
             
             await _context.SaveChangesAsync();
+
+            await _chatHub.Clients.All.SendAsync("messageReceived", messageComment);
 
             return await _context.MessageComments.Where(m => m.MessageId == id).Select(x => new MessageComment()
             {
