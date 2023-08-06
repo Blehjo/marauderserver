@@ -25,29 +25,40 @@ namespace marauderserver.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Shape>>> GetShapes()
         {
-          if (_context.Shapes == null)
-          {
-              return NotFound();
-          }
+            if (_context.Shapes == null)
+            {
+                return NotFound();
+            }
+
             return await _context.Shapes.ToListAsync();
         }
 
         // GET: api/Shape/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Shape>> GetShape(int id)
+        public async Task<ActionResult<IEnumerable<Shape>>> GetShape(int id)
         {
-          if (_context.Shapes == null)
-          {
-              return NotFound();
-          }
-            var shape = await _context.Shapes.FindAsync(id);
-
-            if (shape == null)
+            if (_context.Shapes == null)
             {
                 return NotFound();
             }
 
-            return shape;
+            return await _context.Shapes.Where(s => s.GltfId == id).Select(x => new Shape()
+            {
+                ShapeId = x.ShapeId,
+                ShapeName = x.ShapeName,
+                PositionX = x.PositionX,
+                PositionY = x.PositionY,
+                PositionZ = x.PositionZ,
+                Height = x.Height,
+                Width = x.Width,
+                Depth = x.Depth,
+                Radius = x.Radius,
+                Length = x.Length,
+                Color = x.Color,
+                ColorValue = x.ColorValue,
+                GltfId = x.GltfId,
+                Gltf = x.Gltf
+            }).ToListAsync();
         }
 
         // PUT: api/Shape/5

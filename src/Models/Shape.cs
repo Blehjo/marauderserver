@@ -6,11 +6,11 @@
 
 		public string ShapeName { get; set; }
 
-		public int PositionX { get; set; } = new Random().Next(14);
+		public int PositionX { get; set; } = new Random().Next(5);
 
-        public int PositionY { get; set; } = new Random().Next(14);
+        public int PositionY { get; set; } = new Random().Next(5);
 
-        public int PositionZ { get; set; } = new Random().Next(14);
+        public int PositionZ { get; set; } = new Random().Next(5);
 
         public int? Height { get; set; }
 
