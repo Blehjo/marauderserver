@@ -34,6 +34,26 @@ namespace marauderserver.Controllers
             }).ToListAsync();
         }
 
+        [HttpGet("user")]
+        public async Task<ActionResult<IEnumerable<Gltf>>> GetUserGltfs()
+        {
+            if (_context.Gltfs == null)
+            {
+                return NotFound();
+            }
+
+            var userId = HttpContext.Request.Cookies["user"];
+
+            return await _context.Gltfs.Where(g => g.UserId == userId).Select(g => new Gltf()
+            {
+                GltfId = g.GltfId,
+                FileInformation = g.FileInformation,
+                Shapes = g.Shapes,
+                UserId = g.UserId,
+                User = g.User
+            }).ToListAsync();
+        }
+
         // GET: api/Gltfs/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Gltf>> GetGltf(int id)
@@ -106,8 +126,11 @@ namespace marauderserver.Controllers
             {
                 return Problem("Entity set 'MarauderContext.Gltfs'  is null.");
             }
-            
+
+            gltf.UserId = HttpContext.Request.Cookies["user"];
+
             _context.Gltfs.Add(gltf);
+
             await _context.SaveChangesAsync();
 
             return await _context.Gltfs.Where(g => g.UserId == gltf.UserId).Select(g => new Gltf() {

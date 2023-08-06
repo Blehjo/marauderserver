@@ -10,7 +10,7 @@
 
 		public User? User { get; set; }
 
-		public ICollection<Shape> Shapes { get; set; }
+		public ICollection<Shape>? Shapes { get; set; }
 	}
 }
 
