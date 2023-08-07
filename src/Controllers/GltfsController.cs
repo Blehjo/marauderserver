@@ -54,6 +54,24 @@ namespace marauderserver.Controllers
             }).ToListAsync();
         }
 
+        [HttpGet("user/{id}")]
+        public async Task<ActionResult<IEnumerable<Gltf>>> GetUserGltfs(string id)
+        {
+            if (_context.Gltfs == null)
+            {
+                return NotFound();
+            }
+
+            return await _context.Gltfs.Where(g => g.UserId == id).Select(g => new Gltf()
+            {
+                GltfId = g.GltfId,
+                FileInformation = g.FileInformation,
+                Shapes = g.Shapes,
+                UserId = g.UserId,
+                User = g.User
+            }).ToListAsync();
+        }
+
         // GET: api/Gltfs/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Gltf>> GetGltf(int id)
