@@ -103,7 +103,7 @@ app.MapControllerRoute(
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapHub<ChatHub>("/hub/{id}");
-    endpoints.MapHub<ChatHub>("/hub/channel/{id");
+    endpoints.MapHub<ChatHub>("/hub/{route}/{id}");
 });
 
 app.Run();
