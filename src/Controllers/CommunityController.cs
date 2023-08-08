@@ -74,6 +74,28 @@ namespace marauderserver.Controllers
             };
         }
 
+        [HttpGet("user")]
+        public async Task<ActionResult<IEnumerable<Community>>> GetSingleUserCommunities()
+        {
+            if (_context.Communities == null)
+            {
+                return NotFound();
+            }
+
+            var UserId = HttpContext.Request.Cookies["user"];
+
+            return await _context.Communities.Where(c => c.UserId == UserId).Select(x => new Community()
+            {
+                CommunityId = x.CommunityId,
+                CommunityName = x.CommunityName,
+                Description = x.Description,
+                DateCreated = x.DateCreated,
+                UserId = x.UserId,
+                MediaLink = x.MediaLink,
+                ImageSource = String.Format("{0}://{1}{2}/Images/{3}", Request.Scheme, Request.Host, Request.PathBase, x.MediaLink)
+            }).ToListAsync();
+        }
+
         [HttpGet("user/{id}")]
         public async Task<ActionResult<IEnumerable<Community>>> GetSingleUserCommunities(string id)
         {
