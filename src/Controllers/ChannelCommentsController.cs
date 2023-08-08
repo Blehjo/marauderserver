@@ -19,7 +19,7 @@ namespace marauderserver.Controllers
         public ChannelCommentController(MarauderContext context, IWebHostEnvironment hostEnvironment, IHubContext<ChatHub> chatHub)
         {
             _context = context;
-            _hostEnvironment = hostEnvironment;
+            this._hostEnvironment = hostEnvironment;
             _chatHub = chatHub;
         }
 
@@ -103,7 +103,7 @@ namespace marauderserver.Controllers
         // POST: api/ChannelComment
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost("{id}")]
-        public async Task<ActionResult<IEnumerable<ChannelComment>>> PostChannelComment([FromForm] ChannelComment channelComment, int id)
+        public async Task<ActionResult<IEnumerable<ChannelComment>>> PostChannelComment(int id, [FromForm] ChannelComment channelComment)
         {
             if (_context.ChannelComments == null)
             {
@@ -120,6 +120,8 @@ namespace marauderserver.Controllers
             channelComment.ChannelId = id;
 
             _context.ChannelComments.Add(channelComment);
+
+            await _context.SaveChangesAsync();
 
             await _chatHub.Clients.All.SendAsync("messageReceived", channelComment);
 
