@@ -46,15 +46,15 @@ namespace marauderserver.Controllers
         }
 
         // GET: api/ChannelComment/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<IEnumerable<ChannelComment>>> GetChannelComment(int id)
+        [HttpGet("{channelId}")]
+        public async Task<ActionResult<IEnumerable<ChannelComment>>> GetChannelComment(int channelId)
         {
             if (_context.ChannelComments == null)
             {
                 return NotFound();
             }
 
-            return await _context.ChannelComments.Where(c => c.ChannelId == id).Select(x => new ChannelComment()
+            return await _context.ChannelComments.Where(c => c.ChannelId == channelId).Select(x => new ChannelComment()
             {
                 ChannelCommentId = x.ChannelCommentId,
                 CommentValue = x.CommentValue,
@@ -116,6 +116,8 @@ namespace marauderserver.Controllers
             {
                 channelComment.MediaLink = await SaveImage(channelComment.ImageFile);
             }
+
+            channelComment.ChannelId = id;
 
             _context.ChannelComments.Add(channelComment);
 

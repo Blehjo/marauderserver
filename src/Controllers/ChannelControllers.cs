@@ -129,7 +129,7 @@ namespace marauderserver.Controllers
             _context.Channels.Add(channel);
             await _context.SaveChangesAsync();
 
-            return await _context.Channels.Where(c => c.CommunityId == channel.ChannelId).Select(c => new Channel() {
+            return await _context.Channels.Where(c => c.CommunityId == channel.CommunityId).Select(c => new Channel() {
                 ChannelId = c.ChannelId,
                 Description = c.Description,
                 CommunityId = c.CommunityId,
@@ -156,7 +156,7 @@ namespace marauderserver.Controllers
             _context.Channels.Remove(channel);
             await _context.SaveChangesAsync();
 
-            return await _context.Channels.Where(c => c.CommunityId == channel.ChannelId).Select(c => new Channel() {
+            return await _context.Channels.Where(c => c.CommunityId == channel.CommunityId).Select(c => new Channel() {
                 ChannelId = c.ChannelId,
                 Description = c.Description,
                 CommunityId = c.CommunityId,

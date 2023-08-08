@@ -15,7 +15,7 @@ namespace marauderserver.Controllers
         public PostController(MarauderContext context, IWebHostEnvironment hostEnvironment)
         {
             _context = context;
-            this._hostEnvironment = hostEnvironment;
+            _hostEnvironment = hostEnvironment;
         }
 
         // GET: api/Post
