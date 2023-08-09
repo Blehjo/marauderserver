@@ -85,6 +85,7 @@
     <None Remove="src\wwwroot\" />
     <None Remove="Hubs\" />
     <None Remove="Hubs\Clients\" />
+    <None Remove="Sampling\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="src\" />
@@ -100,6 +101,7 @@
     <Folder Include="wwwroot\images\" />
     <Folder Include="Hubs\" />
     <Folder Include="Hubs\Clients\" />
+    <Folder Include="Sampling\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="SocketIOClient" Version="3.0.8" />
