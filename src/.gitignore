@@ -9,3 +9,5 @@ Dockerfile
 
 appsettings.Development.json
 appsettings.json
+
+wwwroot
