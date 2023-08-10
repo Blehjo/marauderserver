@@ -78,6 +78,7 @@ namespace marauderserver.Controllers
                 CommentId = x.CommentId,
                 CommentValue = x.CommentValue,
                 DateCreated = x.DateCreated,
+                User = x.User,
                 UserId = x.UserId,
                 MediaLink = x.MediaLink,
                 PostId = x.PostId,
