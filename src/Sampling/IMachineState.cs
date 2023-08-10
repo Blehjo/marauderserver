@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace marauderserver.Sampling
+﻿namespace marauderserver.Sampling
 {
     public interface IMachineState
     {
@@ -13,4 +11,3 @@ namespace marauderserver.Sampling
         void ZeroCount();
     }
 }
-

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace marauderserver.Sampling
+﻿namespace marauderserver.Sampling
 {
 
     public class MachineState : IMachineState

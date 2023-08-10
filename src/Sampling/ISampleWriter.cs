@@ -1,7 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-
-namespace marauderserver.Sampling
+﻿namespace marauderserver.Sampling
 {
     public interface ISampleWriter
     {
