@@ -9,8 +9,10 @@
         public int PositionY { get; }
         public int PositionZ { get; }
 
-        public void UpdatePosition(int PositionX, int PositionY, int PositionZ)
+        public Coordinates UpdatePosition(int positionX, int positionY, int positionZ)
         {
+            Coordinates coordinates = new Coordinates(positionX, positionY, positionZ);
+            return coordinates;
             //// Determine our milliseconds offset from the sensor, so we can sort of 
             //// sync our 'now' with the sensor clock.
             //if (startTime == null || sensorMilliseconds < lastTimeStamp)

@@ -7,5 +7,5 @@ public interface IPlayerState
     int PositionY { get; }
     int PositionZ { get; }
 
-    void UpdatePosition(int PositionX, int PositionY, int PositionZ);
+    Coordinates UpdatePosition(int PositionX, int PositionY, int PositionZ);
 }

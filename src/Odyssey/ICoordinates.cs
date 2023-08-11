@@ -2,8 +2,8 @@
 {
 	public interface ICoordinates
 	{
-		int PositionX { get; }
-		int PositionY { get; }
-		int PositionZ { get; }
+		int PositionX { get; set; }
+		int PositionY { get; set; }
+		int PositionZ { get; set; }
 	}
 }
