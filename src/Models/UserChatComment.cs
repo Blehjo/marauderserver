@@ -5,7 +5,7 @@ namespace marauderserver.Models
 {
 	public class UserChatComment
 	{
-        public int CommentId { get; set; }
+        public int UserChatCommentId { get; set; }
 
         public string CommentValue { get; set; }
 

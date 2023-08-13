@@ -12,92 +12,92 @@ namespace marauderserver.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CommentController : ControllerBase
+    public class UserChatCommentController : ControllerBase
     {
         private readonly MarauderContext _context;
         private readonly IWebHostEnvironment _hostEnvironment;
 
-        public CommentController(MarauderContext context, IWebHostEnvironment hostEnvironment)
+        public UserChatCommentController(MarauderContext context, IWebHostEnvironment hostEnvironment)
         {
             _context = context;
             _hostEnvironment = hostEnvironment;
         }
 
-        // GET: api/Comment
+        // GET: api/UserChatComment
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Comment>>> GetComments()
+        public async Task<ActionResult<IEnumerable<UserChatComment>>> GetUserChatComments()
         {
-            if (_context.Comments == null)
+            if (_context.UserChatComments == null)
             {
                 return NotFound();
             }
 
-            return await _context.Comments.Select(x => new Comment() {
-                CommentId = x.CommentId,
+            return await _context.UserChatComments.Select(x => new UserChatComment()
+            {
+                UserChatCommentId = x.UserChatCommentId,
                 CommentValue = x.CommentValue,
                 DateCreated = x.DateCreated,
                 UserId = x.UserId,
                 MediaLink = x.MediaLink,
-                PostId = x.PostId,
+                ChatId = x.ChatId,
                 Favorites = x.Favorites,
-                ImageSource = String.Format("{0}://{1}{2}/images/{3}", Request.Scheme, Request.Host, Request.PathBase, x.MediaLink)}).ToListAsync();
+                ImageSource = String.Format("{0}://{1}{2}/images/{3}", Request.Scheme, Request.Host, Request.PathBase, x.MediaLink)
+            }).ToListAsync();
         }
 
-        // GET: api/Comment/5
+        // GET: api/UserChatComment/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Comment>> GetComment(int id)
+        public async Task<ActionResult<UserChatComment>> GetUserChatComment(int id)
         {
-            if (_context.Comments == null)
-            {
-                return NotFound();
-            }
-            
-            var comment = await _context.Comments.FindAsync(id);
-
-            if (comment == null)
+            if (_context.UserChatComments == null)
             {
                 return NotFound();
             }
 
-            comment.ImageSource = String.Format("{0}://{1}{2}/images/{3}", Request.Scheme, Request.Host, Request.PathBase, comment.MediaLink);
+            var userChatComment = await _context.UserChatComments.FindAsync(id);
 
-            return comment;
+            if (userChatComment == null)
+            {
+                return NotFound();
+            }
+
+            return userChatComment;
         }
 
         // GET: api/Comment/5
-        [HttpGet("post/{id}")]
-        public async Task<ActionResult<IEnumerable<Comment>>> GetPostComments(int id)
+        [HttpGet("chat/{id}")]
+        public async Task<ActionResult<IEnumerable<UserChatComment>>> GetPostComments(int id)
         {
-            if (_context.Comments == null)
+            if (_context.UserChatComments == null)
             {
                 return NotFound();
             }
 
-            return await _context.Comments.Select(x => new Comment()
+            return await _context.UserChatComments.Select(x => new UserChatComment()
             {
-                CommentId = x.CommentId,
+                UserChatCommentId = x.UserChatCommentId,
                 CommentValue = x.CommentValue,
                 DateCreated = x.DateCreated,
                 User = x.User,
                 UserId = x.UserId,
                 MediaLink = x.MediaLink,
-                PostId = x.PostId,
+                ChatId = x.ChatId,
                 Favorites = x.Favorites,
                 ImageSource = String.Format("{0}://{1}{2}/images/{3}", Request.Scheme, Request.Host, Request.PathBase, x.MediaLink)
-            }).Where(c => c.PostId == id).ToListAsync();
+            }).Where(c => c.ChatId == id).ToListAsync();
         }
 
-        // PUT: api/Comment/5
+        // PUT: api/UserChatComment/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutComment(int id, Comment comment)
+        public async Task<IActionResult> PutUserChatComment(int id, UserChatComment userChatComment)
         {
-            if (id != comment.CommentId)
+            if (id != userChatComment.UserChatCommentId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(comment).State = EntityState.Modified;
+            _context.Entry(userChatComment).State = EntityState.Modified;
 
             try
             {
@@ -105,7 +105,7 @@ namespace marauderserver.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CommentExists(id))
+                if (!UserChatCommentExists(id))
                 {
                     return NotFound();
                 }
@@ -118,65 +118,66 @@ namespace marauderserver.Controllers
             return NoContent();
         }
 
-        // POST: api/Comment
+        // POST: api/UserChatComment
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost("{id}")]
-        public async Task<ActionResult<IEnumerable<Comment>>> PostComment(int id, [FromForm] Comment comment)
+        public async Task<ActionResult<IEnumerable<UserChatComment>>> PostUserChatComment(int id, [FromForm] UserChatComment userChatComment)
         {
-            if (_context.Comments == null)
+            if (_context.UserChatComments == null)
             {
-                return Problem("Entity set 'PlanetNineDatabaseContext.Comments'  is null.");
+                return Problem("Entity set 'MarauderContext.UserChatComments'  is null.");
             }
 
-            if (comment.ImageFile != null)
+            if (userChatComment.ImageFile != null)
             {
-                comment.MediaLink = await SaveImage(comment.ImageFile);
+                userChatComment.MediaLink = await SaveImage(userChatComment.ImageFile);
             }
 
-            comment.UserId = HttpContext.Request.Cookies["user"];
+            userChatComment.UserId = HttpContext.Request.Cookies["user"];
 
-            comment.PostId = id;
+            userChatComment.ChatId = id;
 
-            _context.Comments.Add(comment);
+            _context.UserChatComments.Add(userChatComment);
 
             await _context.SaveChangesAsync();
 
-            return await _context.Comments.Select(x => new Comment()
+            return await _context.UserChatComments.Select(x => new UserChatComment()
             {
-                CommentId = x.CommentId,
+                UserChatCommentId = x.UserChatCommentId,
                 CommentValue = x.CommentValue,
                 DateCreated = x.DateCreated,
+                User = x.User,
                 UserId = x.UserId,
                 MediaLink = x.MediaLink,
-                PostId = x.PostId,
+                ChatId = x.ChatId,
                 Favorites = x.Favorites,
                 ImageSource = String.Format("{0}://{1}{2}/images/{3}", Request.Scheme, Request.Host, Request.PathBase, x.MediaLink)
-            }).Where(c => c.PostId == id).ToListAsync();
+            }).Where(c => c.ChatId == id).ToListAsync();
         }
 
-        // DELETE: api/Comment/5
+        // DELETE: api/UserChatComment/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteComment(int id)
+        public async Task<IActionResult> DeleteUserChatComment(int id)
         {
-            if (_context.Comments == null)
+            if (_context.UserChatComments == null)
             {
                 return NotFound();
             }
-            var comment = await _context.Comments.FindAsync(id);
-            if (comment == null)
+            var userChatComment = await _context.UserChatComments.FindAsync(id);
+            if (userChatComment == null)
             {
                 return NotFound();
             }
 
-            _context.Comments.Remove(comment);
+            _context.UserChatComments.Remove(userChatComment);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool CommentExists(int id)
+        private bool UserChatCommentExists(int id)
         {
-            return (_context.Comments?.Any(e => e.CommentId == id)).GetValueOrDefault();
+            return (_context.UserChatComments?.Any(e => e.UserChatCommentId == id)).GetValueOrDefault();
         }
 
         [NonAction]

@@ -12,92 +12,90 @@ namespace marauderserver.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CommentController : ControllerBase
+    public class GltfCommentController : ControllerBase
     {
         private readonly MarauderContext _context;
         private readonly IWebHostEnvironment _hostEnvironment;
 
-        public CommentController(MarauderContext context, IWebHostEnvironment hostEnvironment)
+        public GltfCommentController(MarauderContext context, IWebHostEnvironment hostEnvironment)
         {
             _context = context;
             _hostEnvironment = hostEnvironment;
         }
 
-        // GET: api/Comment
+        // GET: api/GltfComment
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Comment>>> GetComments()
+        public async Task<ActionResult<IEnumerable<GltfComment>>> GetGltfComments()
         {
-            if (_context.Comments == null)
+            if (_context.GltfComments == null)
             {
                 return NotFound();
             }
 
-            return await _context.Comments.Select(x => new Comment() {
-                CommentId = x.CommentId,
+            return await _context.GltfComments.Select(x => new GltfComment()
+            {
+                GltfCommentId = x.GltfCommentId,
                 CommentValue = x.CommentValue,
                 DateCreated = x.DateCreated,
                 UserId = x.UserId,
                 MediaLink = x.MediaLink,
-                PostId = x.PostId,
+                GltfId = x.GltfId,
                 Favorites = x.Favorites,
-                ImageSource = String.Format("{0}://{1}{2}/images/{3}", Request.Scheme, Request.Host, Request.PathBase, x.MediaLink)}).ToListAsync();
+                ImageSource = String.Format("{0}://{1}{2}/images/{3}", Request.Scheme, Request.Host, Request.PathBase, x.MediaLink)
+            }).ToListAsync();
         }
 
-        // GET: api/Comment/5
+        // GET: api/GltfComment/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Comment>> GetComment(int id)
+        public async Task<ActionResult<GltfComment>> GetGltfComment(int id)
         {
-            if (_context.Comments == null)
+          if (_context.GltfComments == null)
+          {
+              return NotFound();
+          }
+            var gltfComment = await _context.GltfComments.FindAsync(id);
+
+            if (gltfComment == null)
             {
                 return NotFound();
             }
-            
-            var comment = await _context.Comments.FindAsync(id);
 
-            if (comment == null)
-            {
-                return NotFound();
-            }
-
-            comment.ImageSource = String.Format("{0}://{1}{2}/images/{3}", Request.Scheme, Request.Host, Request.PathBase, comment.MediaLink);
-
-            return comment;
+            return gltfComment;
         }
 
-        // GET: api/Comment/5
-        [HttpGet("post/{id}")]
-        public async Task<ActionResult<IEnumerable<Comment>>> GetPostComments(int id)
+        [HttpGet("gltf/{id}")]
+        public async Task<ActionResult<IEnumerable<GltfComment>>> GetPostComments(int id)
         {
-            if (_context.Comments == null)
+            if (_context.GltfComments == null)
             {
                 return NotFound();
             }
 
-            return await _context.Comments.Select(x => new Comment()
+            return await _context.GltfComments.Select(x => new GltfComment()
             {
-                CommentId = x.CommentId,
+                GltfCommentId = x.GltfCommentId,
                 CommentValue = x.CommentValue,
                 DateCreated = x.DateCreated,
                 User = x.User,
                 UserId = x.UserId,
                 MediaLink = x.MediaLink,
-                PostId = x.PostId,
+                GltfId = x.GltfId,
                 Favorites = x.Favorites,
                 ImageSource = String.Format("{0}://{1}{2}/images/{3}", Request.Scheme, Request.Host, Request.PathBase, x.MediaLink)
-            }).Where(c => c.PostId == id).ToListAsync();
+            }).Where(c => c.GltfId == id).ToListAsync();
         }
 
-        // PUT: api/Comment/5
+        // PUT: api/GltfComment/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutComment(int id, Comment comment)
+        public async Task<IActionResult> PutGltfComment(int id, GltfComment gltfComment)
         {
-            if (id != comment.CommentId)
+            if (id != gltfComment.GltfCommentId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(comment).State = EntityState.Modified;
+            _context.Entry(gltfComment).State = EntityState.Modified;
 
             try
             {
@@ -105,7 +103,7 @@ namespace marauderserver.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CommentExists(id))
+                if (!GltfCommentExists(id))
                 {
                     return NotFound();
                 }
@@ -118,65 +116,65 @@ namespace marauderserver.Controllers
             return NoContent();
         }
 
-        // POST: api/Comment
+        // POST: api/GltfComment
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost("{id}")]
-        public async Task<ActionResult<IEnumerable<Comment>>> PostComment(int id, [FromForm] Comment comment)
+        [HttpPost]
+        public async Task<ActionResult<IEnumerable<GltfComment>>> PostGltfComment(int id, [FromForm] GltfComment gltfComment)
         {
-            if (_context.Comments == null)
+            if (_context.GltfComments == null)
             {
-                return Problem("Entity set 'PlanetNineDatabaseContext.Comments'  is null.");
+                return Problem("Entity set 'MarauderContext.GltfComments'  is null.");
             }
 
-            if (comment.ImageFile != null)
+            if (gltfComment.ImageFile != null)
             {
-                comment.MediaLink = await SaveImage(comment.ImageFile);
+                gltfComment.MediaLink = await SaveImage(gltfComment.ImageFile);
             }
 
-            comment.UserId = HttpContext.Request.Cookies["user"];
+            gltfComment.UserId = HttpContext.Request.Cookies["user"];
 
-            comment.PostId = id;
+            gltfComment.GltfId = id;
 
-            _context.Comments.Add(comment);
+            _context.GltfComments.Add(gltfComment);
 
             await _context.SaveChangesAsync();
 
-            return await _context.Comments.Select(x => new Comment()
+            return await _context.GltfComments.Select(x => new GltfComment()
             {
-                CommentId = x.CommentId,
+                GltfCommentId = x.GltfCommentId,
                 CommentValue = x.CommentValue,
                 DateCreated = x.DateCreated,
                 UserId = x.UserId,
                 MediaLink = x.MediaLink,
-                PostId = x.PostId,
+                GltfId = x.GltfId,
                 Favorites = x.Favorites,
                 ImageSource = String.Format("{0}://{1}{2}/images/{3}", Request.Scheme, Request.Host, Request.PathBase, x.MediaLink)
-            }).Where(c => c.PostId == id).ToListAsync();
+            }).Where(c => c.GltfId == id).ToListAsync();
         }
 
-        // DELETE: api/Comment/5
+        // DELETE: api/GltfComment/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteComment(int id)
+        public async Task<IActionResult> DeleteGltfComment(int id)
         {
-            if (_context.Comments == null)
+            if (_context.GltfComments == null)
             {
                 return NotFound();
             }
-            var comment = await _context.Comments.FindAsync(id);
-            if (comment == null)
+            var gltfComment = await _context.GltfComments.FindAsync(id);
+            if (gltfComment == null)
             {
                 return NotFound();
             }
 
-            _context.Comments.Remove(comment);
+            _context.GltfComments.Remove(gltfComment);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool CommentExists(int id)
+        private bool GltfCommentExists(int id)
         {
-            return (_context.Comments?.Any(e => e.CommentId == id)).GetValueOrDefault();
+            return (_context.GltfComments?.Any(e => e.GltfCommentId == id)).GetValueOrDefault();
         }
 
         [NonAction]

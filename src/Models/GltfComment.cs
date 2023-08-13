@@ -6,7 +6,7 @@ namespace marauderserver.Models
 {
 	public class GltfComment
 	{
-        public int CommentId { get; set; }
+        public int GltfCommentId { get; set; }
 
         public string CommentValue { get; set; }
 
