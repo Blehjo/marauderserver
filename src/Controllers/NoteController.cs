@@ -97,6 +97,28 @@ namespace marauderserver.Controllers
             }).ToListAsync();
         }
 
+        [HttpGet("panel/{id}")]
+        public async Task<ActionResult<IEnumerable<Note>>> GetPanelNotes(int id)
+        {
+            if (_context.Notes == null)
+            {
+                return NotFound();
+            }
+
+            return await _context.Notes.Where(n => n.PanelId == id).Select(n => new Note()
+            {
+                NoteId = n.NoteId,
+                NoteValue = n.NoteValue,
+                MediaLink = n.MediaLink,
+                XCoord = n.XCoord,
+                YCoord = n.YCoord,
+                DateCreated = n.DateCreated,
+                PanelId = n.PanelId,
+                Panel = n.Panel,
+                ImageSource = String.Format("{0}://{1}{2}/Images/{3}", Request.Scheme, Request.Host, Request.PathBase, n.MediaLink)
+            }).ToListAsync();
+        }
+
         // PUT: api/Note/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
@@ -140,17 +162,21 @@ namespace marauderserver.Controllers
 
         // POST: api/Note
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<IEnumerable<Note>>> PostNote(Note note)
+        [HttpPost("{id}")]
+        public async Task<ActionResult<IEnumerable<Note>>> PostNote(int id, [FromForm] Note note)
         {
-          if (_context.Notes == null)
-          {
-              return Problem("Entity set 'MarauderContext.Note'  is null.");
-          }
+            if (_context.Notes == null)
+            {
+                return Problem("Entity set 'MarauderContext.Note'  is null.");
+            }
+
+            note.PanelId = id;
+
             _context.Notes.Add(note);
+
             await _context.SaveChangesAsync();
 
-            return await _context.Notes.Where(n => n.PanelId == note.PanelId).Select(n => new Note() {
+            return await _context.Notes.Where(n => n.PanelId == id).Select(n => new Note() {
                 NoteId = n.NoteId,
                 NoteValue = n.NoteValue,
                 MediaLink = n.MediaLink,
