@@ -106,6 +106,7 @@ app.UseEndpoints(endpoints =>
     endpoints.MapHub<ChatHub>("/hub/community/{id}");
     endpoints.MapHub<FeedHub>("/feed/{id}");
     endpoints.MapHub<OdysseyHub>("/hub/odyssey/{id}");
+    endpoints.MapHub<EditorHub>("/hub/editor/{id}");
 });
 
 app.Run();

@@ -87,6 +87,7 @@
     <None Remove="Hubs\Clients\" />
     <None Remove="Sampling\" />
     <None Remove="Odyssey\" />
+    <None Remove="Editor\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="src\" />
@@ -104,6 +105,7 @@
     <Folder Include="Hubs\Clients\" />
     <Folder Include="Sampling\" />
     <Folder Include="Odyssey\" />
+    <Folder Include="Editor\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="SocketIOClient" Version="3.0.8" />

@@ -36,6 +36,8 @@ namespace marauderserver.Data
 
 		public DbSet<Gltf> Gltfs { get; set; } = default!;
 
+		public DbSet<GltfComment> GltfComments { get; set; } = default!;
+
 		public DbSet<Message> Messages { get; set; } = default!;
 
 		public DbSet<MessageComment> MessageComments { get; set; } = default!;
@@ -52,8 +54,10 @@ namespace marauderserver.Data
 
 		public DbSet<Post> Posts { get; set; } = default!;
 
-        public DbSet<Shape> Shapes { get; set; } = default!;
+		public DbSet<Shape> Shapes { get; set; } = default!;
 
-        public DbSet<User> Users { get; set; } = default!;
+		public DbSet<User> Users { get; set; } = default!;
+
+		public DbSet<UserChatComment> UserChatComments { get; set; } = default!;
     }
 }

@@ -11,6 +11,10 @@
 		public User? User { get; set; }
 
 		public ICollection<Shape>? Shapes { get; set; }
+
+		public ICollection<GltfComment>? GltfComments { get; set; }
+
+		public ICollection<Favorite>? Favorites { get; set; }
 	}
 }
 

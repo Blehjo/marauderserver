@@ -26,6 +26,8 @@ namespace marauderserver.Models
 
         public ICollection<Comment>? Comments { get; set; }
 
+        public ICollection<UserChatComment>? UserChatComments { get; set; }
+
         public ICollection<Favorite>? Favorites { get; set; }
     }
 }
