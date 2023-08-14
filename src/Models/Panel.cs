@@ -22,6 +22,9 @@ namespace marauderserver.Models
         public string? UserId { get; set; }
         public User? User { get; set; }
 
+        public int? DocFileId { get; set; }
+        public DocFile? DocFile { get; set; }
+
         public ICollection<Note>? Notes { get; set; }
     }
 }

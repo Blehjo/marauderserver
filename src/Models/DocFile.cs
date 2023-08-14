@@ -12,6 +12,8 @@ namespace marauderserver.Models
 		public User? User { get; set; }
 
 		public ICollection<Moveable>? Moveables { get; set; }
+
+		public ICollection<Panel>? Panels { get; set; }
 	}
 }
 

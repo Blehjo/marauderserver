@@ -13,7 +13,7 @@ namespace marauderserver.Models
 
         public string Type { get; set; } = "chat";
 
-        public bool IsPrivate { get; set; }
+        public bool? IsPrivate { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime DateCreated { get; set; } = DateTime.UtcNow;
