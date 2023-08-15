@@ -32,6 +32,7 @@ namespace marauderserver.Controllers
 
             return await _context.Panels.Select(p => new Panel() {
                 PanelId = p.PanelId,
+                DocFileId = p.DocFileId,
                 Title = p.Title,
                 XCoord = p.XCoord,
                 YCoord = p.YCoord,
@@ -44,12 +45,13 @@ namespace marauderserver.Controllers
 
         // GET: api/Panel/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Panel>> GetPanel(int id)
+        public async Task<ActionResult<IEnumerable<Panel>>> GetPanel(int id)
         {
-          if (_context.Panels == null)
-          {
-              return NotFound();
-          }
+            if (_context.Panels == null)
+            {
+                return NotFound();
+            }
+
             var panel = await _context.Panels.FindAsync(id);
 
             if (panel == null)
@@ -57,16 +59,18 @@ namespace marauderserver.Controllers
                 return NotFound();
             }
 
-            return new Panel() {
-                PanelId = panel.PanelId,
-                Title = panel.Title,
-                XCoord = panel.XCoord,
-                YCoord = panel.YCoord,
-                DateCreated = panel.DateCreated,
-                UserId = panel.UserId,
-                User = panel.User,
-                Notes = panel.Notes
-            };
+            return await _context.Panels.Where(p => p.DocFileId == id).Select(p => new Panel()
+            {
+                PanelId = p.PanelId,
+                DocFileId = p.DocFileId,
+                Title = p.Title,
+                XCoord = p.XCoord,
+                YCoord = p.YCoord,
+                DateCreated = p.DateCreated,
+                UserId = p.UserId,
+                User = p.User,
+                Notes = p.Notes
+            }).ToListAsync();
         }
 
         [HttpGet("user/{id}")]
@@ -79,6 +83,7 @@ namespace marauderserver.Controllers
 
             return await _context.Panels.Where(p => p.UserId == id).Select(p => new Panel() {
                 PanelId = p.PanelId,
+                DocFileId = p.DocFileId,
                 Title = p.Title,
                 XCoord = p.XCoord,
                 YCoord = p.YCoord,
@@ -144,6 +149,7 @@ namespace marauderserver.Controllers
 
             return await _context.Panels.Where(p => p.UserId == userId).Select(p => new Panel() {
                 PanelId = p.PanelId,
+                DocFileId = p.DocFileId,
                 Title = p.Title,
                 XCoord = p.XCoord,
                 YCoord = p.YCoord,
@@ -156,21 +162,25 @@ namespace marauderserver.Controllers
 
         // POST: api/Panel
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<IEnumerable<Panel>>> PostPanel(Panel panel)
+        [HttpPost("{id}")]
+        public async Task<ActionResult<IEnumerable<Panel>>> PostPanel(int id, Panel panel)
         {
-          if (_context.Panels == null)
-          {
-              return Problem("Entity set 'MarauderContext.Panels'  is null.");
-          }
+            if (_context.Panels == null)
+            {
+                return Problem("Entity set 'MarauderContext.Panels'  is null.");
+            }
+
+            panel.DocFileId = id;
 
             panel.UserId = HttpContext.Request.Cookies["user"];
 
             _context.Panels.Add(panel);
+
             await _context.SaveChangesAsync();
 
             return await _context.Panels.Where(p => p.UserId == panel.UserId).Select(p => new Panel() {
                 PanelId = p.PanelId,
+                DocFileId = p.DocFileId,
                 Title = p.Title,
                 XCoord = p.XCoord,
                 YCoord = p.YCoord,
@@ -200,6 +210,7 @@ namespace marauderserver.Controllers
 
             return await _context.Panels.Where(p => p.UserId == panel.UserId).Select(p => new Panel() {
                 PanelId = p.PanelId,
+                DocFileId = p.DocFileId,
                 Title = p.Title,
                 XCoord = p.XCoord,
                 YCoord = p.YCoord,

@@ -23,9 +23,11 @@ namespace marauderserver.Controllers
             if (_context.DocFiles == null)
             {
                 return NotFound();
-            } 
+            }
 
-            return await _context.DocFiles.Select(d => new DocFile() {
+            var userId = HttpContext.Request.Cookies["user"];
+
+            return await _context.DocFiles.Where(d => d.UserId == userId).Select(d => new DocFile() {
                 DocFileId = d.DocFileId,
                 Title = d.Title,
                 UserId = d.UserId,
@@ -50,13 +52,7 @@ namespace marauderserver.Controllers
                 return NotFound();
             }
 
-            return new DocFile() {
-                DocFileId = docFile.DocFileId,
-                Title = docFile.Title,
-                UserId = docFile.UserId,
-                User = docFile.User,
-                Moveables = docFile.Moveables
-            };
+            return docFile;
         }
 
         // PUT: api/DocFiles/5
@@ -106,7 +102,10 @@ namespace marauderserver.Controllers
                 return Problem("Entity set 'MarauderContext.DocFiles'  is null.");
             }
 
+            docFile.UserId = HttpContext.Request.Cookies["user"];
+
             _context.DocFiles.Add(docFile);
+
             await _context.SaveChangesAsync();
 
             return await _context.DocFiles.Where(d => d.UserId == docFile.UserId).Select(d => new DocFile() {
