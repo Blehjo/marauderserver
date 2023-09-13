@@ -31,6 +31,7 @@ namespace marauderserver.Controllers
                 PostId = x.PostId,
                 PostValue = x.PostValue,
                 MediaLink = x.MediaLink,
+                User = x.User,
                 UserId = x.UserId,
                 Comments = x.Comments,
                 Favorites = x.Favorites,
