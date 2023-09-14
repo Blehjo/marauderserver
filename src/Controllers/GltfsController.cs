@@ -30,6 +30,7 @@ namespace marauderserver.Controllers
                 GltfId = g.GltfId,
                 FileInformation = g.FileInformation,
                 Shapes = g.Shapes,
+                Type = g.Type,
                 UserId = g.UserId,
                 User = g.User
             }).ToListAsync();
@@ -50,6 +51,7 @@ namespace marauderserver.Controllers
                 GltfId = g.GltfId,
                 FileInformation = g.FileInformation,
                 Shapes = g.Shapes,
+                Type = g.Type,
                 UserId = g.UserId,
                 User = g.User
             }).ToListAsync();
@@ -70,6 +72,7 @@ namespace marauderserver.Controllers
                 GltfId = g.GltfId,
                 FileInformation = g.FileInformation,
                 Shapes = g.Shapes,
+                Type = g.Type,
                 UserId = g.UserId,
                 User = userInfo
             }).ToListAsync();
@@ -91,12 +94,15 @@ namespace marauderserver.Controllers
                 return NotFound();
             }
 
+            var userInfo = _context.Users.Find(gltf.UserId);
+
             return new Gltf() {
                 GltfId = gltf.GltfId,
                 FileInformation = gltf.FileInformation,
                 Shapes = gltf.Shapes,
                 UserId = gltf.UserId,
-                User = gltf.User
+                Type = gltf.Type,
+                User = userInfo
             };
         }
 
@@ -133,6 +139,7 @@ namespace marauderserver.Controllers
                 GltfId = g.GltfId,
                 FileInformation = g.FileInformation,
                 Shapes = g.Shapes,
+                Type = g.Type,
                 UserId = g.UserId,
                 User = g.User
             }).ToListAsync();
@@ -158,6 +165,7 @@ namespace marauderserver.Controllers
                 GltfId = g.GltfId,
                 FileInformation = g.FileInformation,
                 Shapes = g.Shapes,
+                Type = g.Type,
                 UserId = g.UserId,
                 User = g.User
             }).ToListAsync();
@@ -185,6 +193,7 @@ namespace marauderserver.Controllers
                 GltfId = g.GltfId,
                 FileInformation = g.FileInformation,
                 Shapes = g.Shapes,
+                Type = g.Type,
                 UserId = g.UserId,
                 User = g.User
             }).ToListAsync();

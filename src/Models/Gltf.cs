@@ -10,7 +10,9 @@
 
 		public User? User { get; set; }
 
-		public ICollection<Shape>? Shapes { get; set; }
+        public string Type { get; set; } = "gltf";
+
+        public ICollection<Shape>? Shapes { get; set; }
 
 		public ICollection<GltfComment>? GltfComments { get; set; }
 
