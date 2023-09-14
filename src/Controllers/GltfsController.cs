@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using marauderserver.Data;
 using marauderserver.Models;
+using marauderserver.Services;
 
 namespace marauderserver.Controllers
 {
@@ -62,13 +63,15 @@ namespace marauderserver.Controllers
                 return NotFound();
             }
 
+            var userInfo = _context.Users.Find(id);
+
             return await _context.Gltfs.Where(g => g.UserId == id).Select(g => new Gltf()
             {
                 GltfId = g.GltfId,
                 FileInformation = g.FileInformation,
                 Shapes = g.Shapes,
                 UserId = g.UserId,
-                User = g.User
+                User = userInfo
             }).ToListAsync();
         }
 

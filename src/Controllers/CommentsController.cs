@@ -38,6 +38,7 @@ namespace marauderserver.Controllers
                 DateCreated = x.DateCreated,
                 UserId = x.UserId,
                 MediaLink = x.MediaLink,
+                User = x.User,
                 PostId = x.PostId,
                 Favorites = x.Favorites,
                 ImageSource = String.Format("{0}://{1}{2}/images/{3}", Request.Scheme, Request.Host, Request.PathBase, x.MediaLink)}).ToListAsync();
@@ -72,6 +73,8 @@ namespace marauderserver.Controllers
             {
                 return NotFound();
             }
+
+            //var userInfo = _context.Users.Find(id);
 
             return await _context.Comments.Select(x => new Comment()
             {
@@ -141,12 +144,15 @@ namespace marauderserver.Controllers
 
             await _context.SaveChangesAsync();
 
+            var userInfo = _context.Users.Find(comment.UserId);
+
             return await _context.Comments.Select(x => new Comment()
             {
                 CommentId = x.CommentId,
                 CommentValue = x.CommentValue,
                 DateCreated = x.DateCreated,
                 UserId = x.UserId,
+                User = x.User,
                 MediaLink = x.MediaLink,
                 PostId = x.PostId,
                 Favorites = x.Favorites,

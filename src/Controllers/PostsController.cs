@@ -56,12 +56,15 @@ namespace marauderserver.Controllers
                 return NotFound();
             }
 
+            var userInfo = _context.Users.Find(post.UserId);
+
             return new Post()
             {
                 PostId = post.PostId,
                 PostValue = post.PostValue,
                 MediaLink = post.MediaLink,
                 UserId = post.UserId,
+                User = userInfo,
                 Comments = post.Comments,
                 Favorites = post.Favorites,
                 DateCreated = post.DateCreated,

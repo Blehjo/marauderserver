@@ -78,6 +78,8 @@ namespace marauderserver.Controllers
                 return NotFound();
             }
 
+            var userInfo = _context.Users.Find(id);
+
             return await _context.Chats.Where(c => c.UserId == id).Select(x => new Chat()
             {
                 ChatId = x.ChatId,
@@ -85,7 +87,7 @@ namespace marauderserver.Controllers
                 Type = x.Type,
                 DateCreated = x.DateCreated,
                 UserId = x.UserId,
-                User = x.User,
+                User = userInfo,
                 ArtificialIntelligences = x.ArtificialIntelligences,
                 ChatComments = x.ChatComments,
                 Comments = x.Comments,
@@ -108,6 +110,8 @@ namespace marauderserver.Controllers
                 return NotFound();
             }
 
+            var userInfo = _context.Users.Find(chat.UserId);
+
             return new Chat()
             {
                 ChatId = chat.ChatId,
@@ -115,7 +119,7 @@ namespace marauderserver.Controllers
                 Type = chat.Type,
                 DateCreated = chat.DateCreated,
                 UserId = chat.UserId,
-                User = chat.User,
+                User = userInfo,
                 ArtificialIntelligences = chat.ArtificialIntelligences,
                 ChatComments = chat.ChatComments,
                 Comments = chat.Comments,
