@@ -47,7 +47,7 @@ namespace marauderserver.Controllers
 
         // GET: api/UserChatComment/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<UserChatComment>> GetUserChatComment(int id)
+        public async Task<ActionResult<IEnumerable<UserChatComment>>> GetUserChatComment(int id)
         {
             if (_context.UserChatComments == null)
             {
@@ -61,7 +61,18 @@ namespace marauderserver.Controllers
                 return NotFound();
             }
 
-            return userChatComment;
+            return await _context.UserChatComments.Select(x => new UserChatComment()
+            {
+                UserChatCommentId = x.UserChatCommentId,
+                CommentValue = x.CommentValue,
+                DateCreated = x.DateCreated,
+                User = x.User,
+                UserId = x.UserId,
+                MediaLink = x.MediaLink,
+                ChatId = x.ChatId,
+                Favorites = x.Favorites,
+                ImageSource = String.Format("{0}://{1}{2}/images/{3}", Request.Scheme, Request.Host, Request.PathBase, x.MediaLink)
+            }).Where(c => c.ChatId == id).ToListAsync();
         }
 
         // GET: api/Comment/5

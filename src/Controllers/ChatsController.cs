@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using marauderserver.Data;
@@ -40,6 +35,7 @@ namespace marauderserver.Controllers
                 User = x.User,
                 ArtificialIntelligences = x.ArtificialIntelligences,
                 ChatComments = x.ChatComments,
+                UserChatComments = x.UserChatComments,
                 Comments = x.Comments,
                 Favorites = x.Favorites
             }).ToListAsync();
@@ -112,6 +108,27 @@ namespace marauderserver.Controllers
 
             var userInfo = _context.Users.Find(chat.UserId);
 
+            var chatComments = await _context.ChatComments.Where(ch => ch.ChatId == id).Select(x => new ChatComment()
+            {
+                ChatId = x.ChatId,
+                ChatCommentId = x.ChatCommentId,
+                ChatValue = x.ChatValue,
+                DateCreated = x.DateCreated,
+            }).ToListAsync();
+
+            var userChatComments = await _context.UserChatComments.Where(ch => ch.ChatId == id).Select(x => new UserChatComment()
+            {
+                ChatId = x.ChatId,
+                UserChatCommentId = x.UserChatCommentId,
+                CommentValue = x.CommentValue,
+                MediaLink = x.MediaLink,
+                Type = x.Type,
+                ImageFile = x.ImageFile,
+                ImageSource = x.ImageSource,
+                User = x.User,
+                DateCreated = x.DateCreated,
+            }).ToListAsync();
+
             return new Chat()
             {
                 ChatId = chat.ChatId,
@@ -121,7 +138,8 @@ namespace marauderserver.Controllers
                 UserId = chat.UserId,
                 User = userInfo,
                 ArtificialIntelligences = chat.ArtificialIntelligences,
-                ChatComments = chat.ChatComments,
+                ChatComments = chatComments,
+                UserChatComments = userChatComments,
                 Comments = chat.Comments,
                 Favorites = chat.Favorites
             };
