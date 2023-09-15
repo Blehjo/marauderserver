@@ -96,10 +96,13 @@ namespace marauderserver.Controllers
 
             var userInfo = _context.Users.Find(gltf.UserId);
 
+            var gltfComments = await _context.GltfComments.Where(g => g.GltfId == id).ToListAsync();
+
             return new Gltf() {
                 GltfId = gltf.GltfId,
                 FileInformation = gltf.FileInformation,
                 Shapes = gltf.Shapes,
+                GltfComments = gltfComments,
                 UserId = gltf.UserId,
                 Type = gltf.Type,
                 User = userInfo
