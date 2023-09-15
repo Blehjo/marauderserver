@@ -118,7 +118,7 @@ namespace marauderserver.Controllers
 
         // POST: api/GltfComment
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
+        [HttpPost("{id}")]
         public async Task<ActionResult<IEnumerable<GltfComment>>> PostGltfComment(int id, [FromForm] GltfComment gltfComment)
         {
             if (_context.GltfComments == null)
@@ -139,6 +139,8 @@ namespace marauderserver.Controllers
 
             await _context.SaveChangesAsync();
 
+            var userInfo = _context.Users.Find(gltfComment.UserId);
+
             return await _context.GltfComments.Select(x => new GltfComment()
             {
                 GltfCommentId = x.GltfCommentId,
@@ -147,6 +149,7 @@ namespace marauderserver.Controllers
                 UserId = x.UserId,
                 MediaLink = x.MediaLink,
                 GltfId = x.GltfId,
+                User = x.User,
                 Favorites = x.Favorites,
                 ImageSource = String.Format("{0}://{1}{2}/images/{3}", Request.Scheme, Request.Host, Request.PathBase, x.MediaLink)
             }).Where(c => c.GltfId == id).ToListAsync();
