@@ -25,10 +25,11 @@ namespace marauderserver.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Message>>> GetMessages()
         {
-          if (_context.Messages == null)
-          {
-              return NotFound();
-          }
+            if (_context.Messages == null)
+            {
+                return NotFound();
+            }
+
             var userId = HttpContext.Request.Cookies["user"];
 
             var user = await _context.Users.FindAsync(userId);
@@ -40,6 +41,7 @@ namespace marauderserver.Controllers
                 DateCreated = x.DateCreated,
                 User = x.User,
                 UserId = x.UserId,
+                Receiver = _context.Users.Where(r => r.UserId == x.ReceiverId).First(),
                 ReceiverId = x.ReceiverId,
                 MessageComments = x.MessageComments
             }).ToListAsync();
@@ -49,10 +51,11 @@ namespace marauderserver.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Message>> GetMessage(int id)
         {
-          if (_context.Messages == null)
-          {
-              return NotFound();
-          }
+            if (_context.Messages == null)
+            {
+                return NotFound();
+            }
+
             var message = await _context.Messages.FindAsync(id);
 
             if (message == null)
@@ -60,7 +63,19 @@ namespace marauderserver.Controllers
                 return NotFound();
             }
 
-            return message;
+            var messageComments = await _context.MessageComments.Where(m => m.MessageId == id).ToListAsync();
+
+            return new Message()
+            {
+                MessageId = message.MessageId,
+                MessageValue = message.MessageValue,
+                ReceiverId = message.ReceiverId,
+                Receiver = _context.Users.Find(message.ReceiverId),
+                DateCreated = message.DateCreated,
+                UserId = message.UserId,
+                User = message.User,
+                MessageComments = messageComments
+            };
         }
 
         // PUT: api/Message/5
