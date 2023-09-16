@@ -27,6 +27,8 @@ namespace marauderserver.Controllers
                 return NotFound();
             }
 
+            //var favorites = await _context.Favorites.Where(f => f.ContentId == )
+
             return await _context.Posts.Select(x => new Post() {
                 PostId = x.PostId,
                 PostValue = x.PostValue,
@@ -34,7 +36,7 @@ namespace marauderserver.Controllers
                 User = x.User,
                 UserId = x.UserId,
                 Comments = x.Comments,
-                Favorites = x.Favorites,
+                Favorites = _context.Favorites.Where(f => f.ContentId == x.PostId && f.ContentType == "post").ToList(),
                 DateCreated = x.DateCreated,
                 ImageSource = String.Format("{0}://{1}{2}/images/{3}", Request.Scheme, Request.Host, Request.PathBase, x.MediaLink)
             }).ToListAsync();
@@ -66,7 +68,7 @@ namespace marauderserver.Controllers
                 UserId = post.UserId,
                 User = userInfo,
                 Comments = post.Comments,
-                Favorites = post.Favorites,
+                Favorites = _context.Favorites.Where(f => f.ContentId == post.PostId && f.ContentType == "post").ToList(),
                 DateCreated = post.DateCreated,
                 ImageSource = String.Format("{0}://{1}{2}/images/{3}", Request.Scheme, Request.Host, Request.PathBase, post.MediaLink)
             };
@@ -89,7 +91,7 @@ namespace marauderserver.Controllers
                 MediaLink = x.MediaLink,
                 UserId = x.UserId,
                 Comments = x.Comments,
-                Favorites = x.Favorites,
+                Favorites = _context.Favorites.Where(f => f.ContentId == x.PostId && f.ContentType == "post").ToList(),
                 DateCreated = x.DateCreated,
                 ImageSource = String.Format("{0}://{1}{2}/images/{3}", Request.Scheme, Request.Host, Request.PathBase, x.MediaLink)
             }).ToListAsync();
@@ -110,7 +112,7 @@ namespace marauderserver.Controllers
                 MediaLink = x.MediaLink,
                 UserId = x.UserId,
                 Comments = x.Comments,
-                Favorites = x.Favorites,
+                Favorites = _context.Favorites.Where(f => f.ContentId == x.PostId && f.ContentType == "post").ToList(),
                 DateCreated = x.DateCreated,
                 ImageSource = String.Format("{0}://{1}{2}/images/{3}", Request.Scheme, Request.Host, Request.PathBase, x.MediaLink)
             }).ToListAsync();
@@ -151,7 +153,7 @@ namespace marauderserver.Controllers
                 MediaLink = x.MediaLink,
                 UserId = x.UserId,
                 Comments = x.Comments,
-                Favorites = x.Favorites,
+                Favorites = _context.Favorites.Where(f => f.ContentId == x.PostId && f.ContentType == "post").ToList(),
                 DateCreated = x.DateCreated,
                 ImageSource = String.Format("{0}://{1}{2}/images/{3}", Request.Scheme, Request.Host, Request.PathBase, x.MediaLink)
             }).ToListAsync();
@@ -185,7 +187,7 @@ namespace marauderserver.Controllers
                 MediaLink = x.MediaLink,
                 UserId = x.UserId,
                 Comments = x.Comments,
-                Favorites = x.Favorites,
+                Favorites = _context.Favorites.Where(f => f.ContentId == x.PostId && f.ContentType == "post").ToList(),
                 DateCreated = x.DateCreated,
                 ImageSource = String.Format("{0}://{1}{2}/images/{3}", Request.Scheme, Request.Host, Request.PathBase, x.MediaLink)
             }).ToListAsync();

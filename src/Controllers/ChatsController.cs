@@ -37,7 +37,7 @@ namespace marauderserver.Controllers
                 ChatComments = x.ChatComments,
                 UserChatComments = x.UserChatComments,
                 Comments = x.Comments,
-                Favorites = x.Favorites
+                Favorites = _context.Favorites.Where(f => f.ContentId == x.ChatId && f.ContentType == "chat").ToList()
             }).ToListAsync();
         }
 
@@ -62,7 +62,7 @@ namespace marauderserver.Controllers
                 ArtificialIntelligences = x.ArtificialIntelligences,
                 ChatComments = x.ChatComments,
                 Comments = x.Comments,
-                Favorites = x.Favorites
+                Favorites = _context.Favorites.Where(f => f.ContentId == x.ChatId && f.ContentType == "chat").ToList()
             }).ToListAsync();
         }
 
@@ -87,7 +87,7 @@ namespace marauderserver.Controllers
                 ArtificialIntelligences = x.ArtificialIntelligences,
                 ChatComments = x.ChatComments,
                 Comments = x.Comments,
-                Favorites = x.Favorites
+                Favorites = _context.Favorites.Where(f => f.ContentId == x.ChatId && f.ContentType == "chat").ToList()
             }).ToListAsync();
         }
 
@@ -141,7 +141,7 @@ namespace marauderserver.Controllers
                 ChatComments = chatComments,
                 UserChatComments = userChatComments,
                 Comments = chat.Comments,
-                Favorites = chat.Favorites
+                Favorites = _context.Favorites.Where(f => f.ContentId == chat.ChatId && f.ContentType == "chat").ToList()
             };
         }
 

@@ -29,6 +29,8 @@ namespace marauderserver.Controllers
             return await _context.Gltfs.Select(g => new Gltf() {
                 GltfId = g.GltfId,
                 FileInformation = g.FileInformation,
+                GltfComments = g.GltfComments,
+                Favorites = _context.Favorites.Where(f => f.ContentId == g.GltfId && f.ContentType == "gltf").ToList(),
                 Shapes = g.Shapes,
                 Type = g.Type,
                 UserId = g.UserId,
@@ -50,6 +52,8 @@ namespace marauderserver.Controllers
             {
                 GltfId = g.GltfId,
                 FileInformation = g.FileInformation,
+                GltfComments = _context.GltfComments.Where(g => g.GltfId == g.GltfId).ToList(),
+                Favorites = _context.Favorites.Where(f => f.ContentId == g.GltfId && f.ContentType == "gltf").ToList(),
                 Shapes = g.Shapes,
                 Type = g.Type,
                 UserId = g.UserId,
@@ -71,6 +75,8 @@ namespace marauderserver.Controllers
             {
                 GltfId = g.GltfId,
                 FileInformation = g.FileInformation,
+                GltfComments = _context.GltfComments.Where(g => g.GltfId == g.GltfId).ToList(),
+                Favorites = _context.Favorites.Where(f => f.ContentId == g.GltfId && f.ContentType == "gltf").ToList(),
                 Shapes = g.Shapes,
                 Type = g.Type,
                 UserId = g.UserId,
@@ -101,6 +107,7 @@ namespace marauderserver.Controllers
             return new Gltf() {
                 GltfId = gltf.GltfId,
                 FileInformation = gltf.FileInformation,
+                Favorites = _context.Favorites.Where(f => f.ContentId == gltf.GltfId && f.ContentType == "gltf").ToList(),
                 Shapes = gltf.Shapes,
                 GltfComments = gltfComments,
                 UserId = gltf.UserId,
@@ -141,6 +148,8 @@ namespace marauderserver.Controllers
             return await _context.Gltfs.Where(g => g.UserId == gltf.UserId).Select(g => new Gltf() {
                 GltfId = g.GltfId,
                 FileInformation = g.FileInformation,
+                GltfComments = _context.GltfComments.Where(g => g.GltfId == g.GltfId).ToList(),
+                Favorites = _context.Favorites.Where(f => f.ContentId == g.GltfId && f.ContentType == "gltf").ToList(),
                 Shapes = g.Shapes,
                 Type = g.Type,
                 UserId = g.UserId,
@@ -167,6 +176,8 @@ namespace marauderserver.Controllers
             return await _context.Gltfs.Where(g => g.UserId == gltf.UserId).Select(g => new Gltf() {
                 GltfId = g.GltfId,
                 FileInformation = g.FileInformation,
+                GltfComments = _context.GltfComments.Where(g => g.GltfId == g.GltfId).ToList(),
+                Favorites = _context.Favorites.Where(f => f.ContentId == g.GltfId && f.ContentType == "gltf").ToList(),
                 Shapes = g.Shapes,
                 Type = g.Type,
                 UserId = g.UserId,
@@ -195,6 +206,8 @@ namespace marauderserver.Controllers
             return await _context.Gltfs.Where(g => g.UserId == gltf.UserId).Select(g => new Gltf() {
                 GltfId = g.GltfId,
                 FileInformation = g.FileInformation,
+                GltfComments = _context.GltfComments.Where(g => g.GltfId == g.GltfId).ToList(),
+                Favorites = _context.Favorites.Where(f => f.ContentId == g.GltfId && f.ContentType == "gltf").ToList(),
                 Shapes = g.Shapes,
                 Type = g.Type,
                 UserId = g.UserId,
