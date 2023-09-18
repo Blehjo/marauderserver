@@ -104,6 +104,8 @@ namespace marauderserver.Controllers
                 return NotFound();
             }
 
+            // If statement for when there are no communities or user has no communities created
+
             return await _context.Communities.Where(c => c.UserId == id).Select(x => new Community()
             {
                 CommunityId = x.CommunityId,
