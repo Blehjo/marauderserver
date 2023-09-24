@@ -4,7 +4,6 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <DockerComposeProjectPath>../../docker-compose.dcproj</DockerComposeProjectPath>
     <UserSecretsId>e65f4b69-acba-4f9f-bb02-a70d74ec3ed7</UserSecretsId>
   </PropertyGroup>
 
@@ -88,8 +87,10 @@
     <None Remove="Sampling\" />
     <None Remove="Odyssey\" />
     <None Remove="Editor\" />
+    <None Remove="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="marauderserver\" />
     <Folder Include="src\" />
     <Folder Include="src\Authorization\" />
     <Folder Include="src\Controllers\" />
@@ -106,6 +107,7 @@
     <Folder Include="Sampling\" />
     <Folder Include="Odyssey\" />
     <Folder Include="Editor\" />
+    <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="SocketIOClient" Version="3.0.8" />

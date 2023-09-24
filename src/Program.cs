@@ -21,7 +21,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy(MyAllowSpecificOrigins,
                       policy =>
                       {
-                          policy.WithOrigins("http://localhost:3000", "https://localhost:7225")
+                          policy.WithOrigins("http://localhost:3000", "https://marauders.vercel.app", "https://localhost:7225")
                           .AllowAnyHeader()
                           .AllowAnyMethod()
                           .AllowCredentials();
