@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  marauderserver:
+    image: ${DOCKER_REGISTRY-}marauderserver
+    build:
+      context: .
+      dockerfile: src/Dockerfile

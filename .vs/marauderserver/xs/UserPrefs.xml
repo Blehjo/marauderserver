@@ -1,22 +1,28 @@
-﻿<Properties StartupConfiguration="{8FAFECC5-711F-4DE1-AD3E-0E7361485053}|https">
-  <MonoDevelop.Ide.Workbench ActiveDocument="src/Models/Message.cs">
-    <Files>
-      <File FileName="src/Models/Message.cs" Line="14" Column="40" />
-    </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State name="__root__" />
-      </Pad>
-    </Pads>
-  </MonoDevelop.Ide.Workbench>
+﻿<Properties StartupConfiguration="{8FAFECC5-711F-4DE1-AD3E-0E7361485053}|http">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.marauderserver PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MultiItemStartupConfigurations />
-  <DisabledProjects>
-    <String>marauderserver.csproj</String>
-  </DisabledProjects>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <DisabledProjects>
+    <String>marauderserver.csproj</String>
+  </DisabledProjects>
+  <MonoDevelop.Ide.ItemProperties.marauderserver PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="src/Dockerfile">
+    <Files>
+      <File FileName="src/Models/Message.cs" Line="14" Column="1" />
+      <File FileName="src/Dockerfile" Line="10" Column="9" />
+      <File FileName="src/appsettings.Development.json" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="marauderserver">
+            <Node name="marauderserver" expanded="True" selected="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
 </Properties>
