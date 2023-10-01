@@ -1,6 +1,5 @@
 using marauderserver.Models;
 using Microsoft.EntityFrameworkCore;
-using static OpenAI.GPT3.ObjectModels.SharedModels.IOpenAiModels;
 
 namespace marauderserver.Data
 {
