@@ -410,16 +410,16 @@
     ]
   },
   "packageFolders": {
-    "/Users/blehjo/projects/marauder/marauderserver/obj/.store/.stage/q0rmwdil.o3d": {}
+    "/Users/blehjo/projects/marauder/marauderserver/src/obj/.store/.stage/3jswpqwm.n2m": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/var/folders/9s/8vv2lg5972b7716snb5p0l_w0000gn/T/1de49065-ba33-4750-b019-e6d164c82c14/restore.csproj",
+      "projectUniqueName": "/var/folders/9s/8vv2lg5972b7716snb5p0l_w0000gn/T/6f92f686-b792-4216-b355-ec4c03a6e6a5/restore.csproj",
       "projectName": "restore",
-      "projectPath": "/var/folders/9s/8vv2lg5972b7716snb5p0l_w0000gn/T/1de49065-ba33-4750-b019-e6d164c82c14/restore.csproj",
-      "packagesPath": "/Users/blehjo/projects/marauder/marauderserver/obj/.store/.stage/q0rmwdil.o3d",
-      "outputPath": "/Users/blehjo/projects/marauder/marauderserver/obj/.store/.stage/q0rmwdil.o3d/",
+      "projectPath": "/var/folders/9s/8vv2lg5972b7716snb5p0l_w0000gn/T/6f92f686-b792-4216-b355-ec4c03a6e6a5/restore.csproj",
+      "packagesPath": "/Users/blehjo/projects/marauder/marauderserver/src/obj/.store/.stage/3jswpqwm.n2m",
+      "outputPath": "/Users/blehjo/projects/marauder/marauderserver/src/obj/.store/.stage/3jswpqwm.n2m/",
       "projectStyle": "DotnetToolReference",
       "configFilePaths": [
         "/Users/blehjo/.nuget/NuGet/NuGet.Config"

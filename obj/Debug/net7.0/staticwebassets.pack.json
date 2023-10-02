@@ -9,6 +9,10 @@
       "PackagePath": "staticwebassets/favicon.ico"
     },
     {
+      "Id": "/Users/blehjo/projects/marauder/marauderserver/wwwroot/images/fav.jpg",
+      "PackagePath": "staticwebassets/images/fav.jpg"
+    },
+    {
       "Id": "/Users/blehjo/projects/marauder/marauderserver/wwwroot/js/site.js",
       "PackagePath": "staticwebassets/js/site.js"
     },

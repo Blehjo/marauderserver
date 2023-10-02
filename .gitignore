@@ -1,0 +1,13 @@
+bin/
+obj/
+
+.vs/
+.env
+
+docker-compose.yml
+Dockerfile
+
+appsettings.Development.json
+appsettings.json
+
+wwwroot

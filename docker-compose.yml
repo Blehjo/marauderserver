@@ -1,8 +1,20 @@
-version: '3.4'
+﻿version: "3.9"  
 
 services:
-  marauderserver:
-    image: ${DOCKER_REGISTRY-}marauderserver
-    build:
-      context: .
-      dockerfile: src/Dockerfile
+  marauder_api:
+    # platform: linux/arm64
+    build: .
+    container_name: marauder_api
+    ports:
+      - 8080:80
+  mssql:
+    platform: linux/amd64
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: marauder_server
+    ports:
+      - 1433:1433 
+    environment:
+      - ACCEPT_EULA=y
+      - SA_PASSWORD=D&senrascanco0608
+    volumes:
+      - /var/lib/docker/volumes/mssql_db/_data:/var/opt/data

@@ -4,15 +4,15 @@
     <RestoreSuccess Condition=" '$(RestoreSuccess)' == '' ">True</RestoreSuccess>
     <RestoreTool Condition=" '$(RestoreTool)' == '' ">NuGet</RestoreTool>
     <ProjectAssetsFile Condition=" '$(ProjectAssetsFile)' == '' ">$(MSBuildThisFileDirectory)project.assets.json</ProjectAssetsFile>
-    <NuGetPackageRoot Condition=" '$(NuGetPackageRoot)' == '' ">/Users/blehjo/projects/marauder/marauderserver/obj/.store/.stage/q0rmwdil.o3d</NuGetPackageRoot>
-    <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">/Users/blehjo/projects/marauder/marauderserver/obj/.store/.stage/q0rmwdil.o3d</NuGetPackageFolders>
+    <NuGetPackageRoot Condition=" '$(NuGetPackageRoot)' == '' ">/Users/blehjo/projects/marauder/marauderserver/src/obj/.store/.stage/3jswpqwm.n2m</NuGetPackageRoot>
+    <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">/Users/blehjo/projects/marauder/marauderserver/src/obj/.store/.stage/3jswpqwm.n2m</NuGetPackageFolders>
     <NuGetProjectStyle Condition=" '$(NuGetProjectStyle)' == '' ">DotnetToolReference</NuGetProjectStyle>
     <NuGetToolVersion Condition=" '$(NuGetToolVersion)' == '' ">6.6.0</NuGetToolVersion>
   </PropertyGroup>
   <ItemGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <SourceRoot Include="/Users/blehjo/projects/marauder/marauderserver/obj/.store/.stage/q0rmwdil.o3d/" />
+    <SourceRoot Include="/Users/blehjo/projects/marauder/marauderserver/src/obj/.store/.stage/3jswpqwm.n2m/" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <Pkgdotnet-aspnet-codegenerator Condition=" '$(Pkgdotnet-aspnet-codegenerator)' == '' ">/Users/blehjo/projects/marauder/marauderserver/obj/.store/.stage/q0rmwdil.o3d/dotnet-aspnet-codegenerator/7.0.7</Pkgdotnet-aspnet-codegenerator>
+    <Pkgdotnet-aspnet-codegenerator Condition=" '$(Pkgdotnet-aspnet-codegenerator)' == '' ">/Users/blehjo/projects/marauder/marauderserver/src/obj/.store/.stage/3jswpqwm.n2m/dotnet-aspnet-codegenerator/7.0.7</Pkgdotnet-aspnet-codegenerator>
   </PropertyGroup>
 </Project>

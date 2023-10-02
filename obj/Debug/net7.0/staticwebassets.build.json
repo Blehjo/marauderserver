@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "r4sodVtX8nitb8iz2JwHk+9SoMTrV2YdDIsZvO4feFE=",
+  "Hash": "DljKmtZxoqg4pitU2zox8u0PAbMcdJ51XA4QERBh05o=",
   "Source": "marauderserver",
   "BasePath": "_content/marauderserver",
   "Mode": "Default",
@@ -49,6 +49,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/favicon.ico"
+    },
+    {
+      "Identity": "/Users/blehjo/projects/marauder/marauderserver/wwwroot/images/fav.jpg",
+      "SourceId": "marauderserver",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/blehjo/projects/marauder/marauderserver/wwwroot/",
+      "BasePath": "_content/marauderserver",
+      "RelativePath": "images/fav.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/images/fav.jpg"
     },
     {
       "Identity": "/Users/blehjo/projects/marauder/marauderserver/wwwroot/js/site.js",
