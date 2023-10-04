@@ -290,8 +290,6 @@
 /Users/blehjo/projects/marauder/marauderserver/src/bin/Debug/net7.0/Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 /Users/blehjo/projects/marauder/marauderserver/src/bin/Debug/net7.0/Newtonsoft.Json.Bson.dll
 /Users/blehjo/projects/marauder/marauderserver/src/bin/Debug/net7.0/Web.config
-/Users/blehjo/projects/marauder/marauderserver/bin/Debug/net7.0/appsettings.Development.json
-/Users/blehjo/projects/marauder/marauderserver/bin/Debug/net7.0/appsettings.json
 /Users/blehjo/projects/marauder/marauderserver/bin/Debug/net7.0/marauderserver.staticwebassets.runtime.json
 /Users/blehjo/projects/marauder/marauderserver/bin/Debug/net7.0/marauderserver
 /Users/blehjo/projects/marauder/marauderserver/bin/Debug/net7.0/marauderserver.deps.json
@@ -589,3 +587,5 @@
 /Users/blehjo/projects/marauder/marauderserver/obj/Debug/net7.0/marauderserver.pdb
 /Users/blehjo/projects/marauder/marauderserver/obj/Debug/net7.0/marauderserver.genruntimeconfig.cache
 /Users/blehjo/projects/marauder/marauderserver/obj/Debug/net7.0/ref/marauderserver.dll
+/Users/blehjo/projects/marauder/marauderserver/bin/Debug/net7.0/appsettings.Development.json
+/Users/blehjo/projects/marauder/marauderserver/bin/Debug/net7.0/appsettings.json

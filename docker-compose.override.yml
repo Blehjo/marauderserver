@@ -2,12 +2,13 @@ version: '3.4'
 
 services:
   marauder_api:
+    # platform: linux/amd64
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:80
     ports:
       - "80"
-      - "443"
+      # - "443"
     volumes:
       - ~/.aspnet/https:/root/.aspnet/https:ro
       - ~/.microsoft/usersecrets:/root/.microsoft/usersecrets:ro

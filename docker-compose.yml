@@ -2,11 +2,9 @@
 
 services:
   marauder_api:
-    # platform: linux/arm64
     build: .
+    # platform: linux/amd64
     container_name: marauder_api
-    ports:
-      - 8080:80
   mssql:
     platform: linux/amd64
     image: mcr.microsoft.com/mssql/server:2022-latest

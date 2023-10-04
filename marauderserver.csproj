@@ -80,7 +80,6 @@
     <None Remove="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js" />
     <None Remove="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js" />
     <None Remove="wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt" />
-    <None Remove="wwwroot\" />
     <None Remove="Hubs\" />
     <None Remove="Hubs\Clients\" />
     <None Remove="Sampling\" />
@@ -96,15 +95,15 @@
     <Folder Include="Models\" />
     <Folder Include="Properties\" />
     <Folder Include="Services\" />
-    <Folder Include="wwwroot\" />
     <Folder Include="Properties\" />
-    <Folder Include="wwwroot\images\" />
     <Folder Include="Hubs\" />
     <Folder Include="Hubs\Clients\" />
     <Folder Include="Sampling\" />
     <Folder Include="Odyssey\" />
     <Folder Include="Editor\" />
     <Folder Include="Properties\" />
+    <Folder Include="wwwroot\" />
+    <Folder Include="wwwroot\images\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="SocketIOClient" Version="3.0.8" />
@@ -143,6 +142,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Remove="wwwroot\" />
     <Content Remove="wwwroot\images\" />
   </ItemGroup>
   <ItemGroup>
