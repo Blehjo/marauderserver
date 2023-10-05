@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using marauderserver.Data;
 using marauderserver.Models;
+using Microsoft.AspNetCore.SignalR;
+using marauderserver.Hubs;
 
 namespace marauderserver.Controllers
 {
@@ -16,9 +18,12 @@ namespace marauderserver.Controllers
     {
         private readonly MarauderContext _context;
 
-        public ShapeController(MarauderContext context)
+        private readonly IHubContext<EditorHub> _editorHub;
+
+        public ShapeController(MarauderContext context, IHubContext<EditorHub> editorHub)
         {
             _context = context;
+            _editorHub = editorHub;
         }
 
         // GET: api/Shape
@@ -89,20 +94,26 @@ namespace marauderserver.Controllers
                 }
             }
 
+            await _editorHub.Clients.All.SendAsync("shapeReceived", shape);
+
             return NoContent();
         }
 
         // POST: api/Shape
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Shape>> PostShape(Shape shape)
+        [HttpPost("{id}")]
+        public async Task<ActionResult<Shape>> PostShape(int id, Shape shape)
         {
-          if (_context.Shapes == null)
-          {
-              return Problem("Entity set 'MarauderContext.Shapes'  is null.");
-          }
+            if (_context.Shapes == null)
+            {
+                return Problem("Entity set 'MarauderContext.Shapes'  is null.");
+            }
+
             _context.Shapes.Add(shape);
+
             await _context.SaveChangesAsync();
+
+            await _editorHub.Clients.All.SendAsync("shapeReceived", shape);
 
             return CreatedAtAction("GetShape", new { id = shape.ShapeId }, shape);
         }
