@@ -53,8 +53,6 @@ namespace marauderserver.Controllers
         [HttpPost("messages")]
         public async Task Post(MessageComment messagecomment)
         {
-            // run some logic...
-
             await _chatHub.Clients.All.SendAsync("messageReceived", messagecomment);
         }
 
