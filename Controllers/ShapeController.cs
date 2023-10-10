@@ -9,6 +9,7 @@ using marauderserver.Data;
 using marauderserver.Models;
 using Microsoft.AspNetCore.SignalR;
 using marauderserver.Hubs;
+using Microsoft.Extensions.Hosting;
 
 namespace marauderserver.Controllers
 {
@@ -66,6 +67,40 @@ namespace marauderserver.Controllers
             }).ToListAsync();
         }
 
+        // GET: api/Shape/shape/5
+        [HttpGet("shape/{id}")]
+        public async Task<ActionResult<Shape>> GetSingleShape(int id)
+        {
+            if (_context.Shapes == null)
+            {
+                return NotFound();
+            }
+
+            var shape = await _context.Shapes.FindAsync(id);
+
+            if (shape == null)
+            {
+                return NotFound();
+            }
+
+            return new Shape()
+            {
+                ShapeId = shape.ShapeId,
+                ShapeName = shape.ShapeName,
+                PositionX = shape.PositionX,
+                PositionY = shape.PositionY,
+                PositionZ = shape.PositionZ,
+                Height = shape.Height,
+                Width = shape.Width,
+                Depth = shape.Depth,
+                Radius = shape.Radius,
+                Length = shape.Length,
+                Color = shape.Color,
+                ColorValue = shape.ColorValue,
+                GltfId = shape.GltfId,
+                Gltf = shape.Gltf
+            };
+        }
         // PUT: api/Shape/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
