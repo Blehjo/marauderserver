@@ -25,7 +25,11 @@ namespace marauderserver.Data
 
 		public DbSet<Community> Communities { get; set; } = default!;
 
-		public DbSet<Device> Devices { get; set; } = default!;
+		public DbSet<CommunityComment> CommunityComments { get; set; } = default!;
+
+        public DbSet<CommunityPost> CommunityPosts { get; set; } = default!;
+
+        public DbSet<Device> Devices { get; set; } = default!;
 
 		public DbSet<DocFile> DocFiles { get; set; } = default!;
 
