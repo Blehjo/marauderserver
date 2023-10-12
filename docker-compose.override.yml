@@ -1,7 +1,7 @@
 version: '3.4'
 
 services:
-  marauder_api:
+  marauderapi:
     # platform: linux/amd64
     environment:
       - ASPNETCORE_ENVIRONMENT=Development

@@ -1,14 +1,14 @@
 ﻿version: "3.9"  
 
 services:
-  marauder_api:
+  marauderapi:
     build: .
     # platform: linux/amd64
-    container_name: marauder_api
-  mssql:
+    container_name: marauderapi
+  maraudersserver:
     platform: linux/amd64
     image: mcr.microsoft.com/mssql/server:2022-latest
-    container_name: marauder_server
+    container_name: maraudersserver
     ports:
       - 1433:1433 
     environment:
